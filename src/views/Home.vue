@@ -1,17 +1,43 @@
 <template>
-  <div class="home">
-    <!-- <textarea /> -->
-    <v-textarea
-      label="Source"
-      @input="$store.commit('updateMarkdown',$event)"
-      hint="Mark it down here"
-    />
-    <v-spacer />
-    <div
-      class="preview"
-      v-html="$store.state.preview"
-    />
-  </div>
+  <v-container
+    fluid
+    grid-list-md
+  >
+
+    <v-layout
+      row
+      fill-height
+      justify-space-between
+    >
+
+      <v-flex md6>
+        <v-container>
+          <v-layout column>
+            <h2>Source</h2>
+            <v-textarea
+              solo
+              @input="$store.commit('updateMarkdown',$event)"
+              hint="Mark it down here"
+            />
+          </v-layout>
+        </v-container>
+      </v-flex>
+
+      <v-flex md6>
+        <v-container>
+          <v-layout column>
+            <h2>Preview</h2>
+            <div
+              class="preview"
+              v-html="$store.state.preview"
+            />
+          </v-layout>
+        </v-container>
+      </v-flex>
+
+    </v-layout>
+
+  </v-container>
 </template>
 
 <script>
@@ -27,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.preview {
+.preview1 {
   min-height: 100vh;
   min-width: 50vw;
   outline: 1px solid red;
