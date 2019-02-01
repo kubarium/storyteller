@@ -8,10 +8,17 @@
       <v-btn flat>
         <span class="mr-2">Stories</span>
       </v-btn>
+      <v-btn
+        flat
+        to="/dropbox"
+      >
+        <span class="mr-2">Dropbox</span>
+      </v-btn>
     </v-toolbar>
 
     <v-content>
-      <Home />
+      <!-- <Home /> -->
+      <router-view />
     </v-content>
   </v-app>
 </template>
