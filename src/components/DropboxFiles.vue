@@ -16,23 +16,26 @@
         Your Dropbox Files
       </v-card-title>
       <v-divider />
-      <v-breadcrumbs :items="breadcrumbs">
+      <v-breadcrumbs
+        :items="breadcrumbs"
+        v-show="!isRoot()"
+      >
         <template
           slot="item"
           slot-scope="props"
         >
           <!-- <a :href="props.item.href">{{ props.item.text }}</a> -->
-          <span @click="getEntries(props.item.path)">{{props.item.text}}</span>
+          <a @click="clickEntry(props.item)">{{props.item.text}}</a>
         </template>
       </v-breadcrumbs>
-      <v-divider />
+      <v-divider v-show="!isRoot()" />
       <v-card-text>
         <v-list>
           <template v-for="(entry, index) in entries">
 
             <v-list-tile
               :key="entry.title"
-              @click="getEntries(entry.path_lower)"
+              @click="clickEntry(entry)"
             >
               <v-list-tile-avatar>
                 <v-icon v-if="entry['.tag']==='folder'">folder</v-icon>
@@ -83,10 +86,31 @@ export default {
     };
   },
   methods: {
-    getEntries(path) {
-      //console.log(evt);
-      this.path = path;
-
+    clickEntry(entry) {
+      console.log(entry);
+      if (this.isFolder(entry)) {
+        this.getEntries(entry.path_lower);
+      }
+      /* if (path && this.isMarkdown(entry)) {
+        return this.$store.dispatch("fetchMarkdown", path);
+      } */
+    },
+    isFolder(entry) {
+      return entry[".tag"] === "folder";
+    },
+    isParent(entry) {
+      return entry[".tag"] === "parent";
+    },
+    isMarkdown(entry) {
+      return RegExp(/\.(.*?)$/).exec(entry.name)[1] === "md";
+    },
+    isRoot() {
+      return this.path === "";
+    },
+    getEntryType(entry) {
+      return entry[".tag"];
+    },
+    crumble() {
       const breadcrumbsPath = this.path.split("/").reduce((a, b, index) => {
         return index > 0 ? a.concat(`${a[index - 1]}/${b}`) : a.concat(b);
       }, []);
@@ -96,6 +120,12 @@ export default {
           path: breadcrumbsPath[index]
         };
       });
+    },
+    getEntries(path) {
+      this.path = path;
+
+      this.crumble();
+
       this.dbx
         .filesListFolder({ path })
         .then(response => this.fileTree(response.entries))
@@ -103,29 +133,26 @@ export default {
     },
     fileTree(entries) {
       this.entries = entries.filter(entry => {
-        if (entry[".tag"] === "folder") {
+        if (this.isFolder(entry)) {
           return true;
         }
-        if (RegExp(/\.(.*?)$/).exec(entry.name)[1] === "md") {
+        if (this.isMarkdown(entry)) {
           return true;
         }
         return false;
       });
 
-      if (this.path !== "") {
-        //console.log(this.path.replace(RegExp(/\/.*?$/), ""));
+      if (!this.isRoot()) {
         this.entries.unshift({
           name: "Go up",
           ".tag": "parent",
           path_lower: this.path.replace(RegExp(/\/\w*$/g), "")
         });
       }
-
-      console.log(entries);
-    },
-    initialize() {}
+    }
   },
   created() {
+    console.clear();
     this.dbx = new Dropbox.Dropbox({
       accessToken: process.env.VUE_APP_DROPBOX_ACCESS_TOKEN
     });

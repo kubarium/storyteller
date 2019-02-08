@@ -7,16 +7,22 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    markdown: "",
+    markdown: {
+      path: "",
+      content: ""
+    },
     preview: ""
   },
   mutations: {
     updateMarkdown(state, value) {
-      console.log(value);
-      state.markdown = value;
+      state.markdown.content = value;
       //state.preview = markdown.toHTML(state.markdown);
-      state.preview = md({ html: true, linkify: true }).render(state.markdown);
+      state.preview = md({html: true, linkify: true}).render(state.markdown.content);
     }
   },
-  actions: {}
+  actions: {
+    fetchMarkdown(state, path) {
+      console.log(path)
+    }
+  }
 });
