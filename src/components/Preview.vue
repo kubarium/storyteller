@@ -27,5 +27,5 @@ export default {
   overflow-y: scroll;
   height: 500px;
 }
-@import "../styles/default.scss";
+//@import "../styles/default.scss";
 </style>

@@ -25,12 +25,14 @@
         <v-container>
           <v-layout column>
             <h2>Preview</h2>
+            <img :src="`${publicPath}zibar.jpg`">
+
             <preview :css="$store.state.style"/>
           </v-layout>
         </v-container>
       </v-flex>
     </v-layout>
-    <link ref="stylesheet" :href="$store.state.style"/>
+    <link ref="stylesheet"  :href="`${publicPath}${$store.state.styleSheet}`"/>
 </v-container>
 </template>
 
@@ -44,6 +46,11 @@ export default {
   components: {
     FileOperations,
     Preview
+  },
+  data() {
+    return {
+      publicPath: process.env.BASE_URL
+    };
   }
 };
 </script>

@@ -16,11 +16,13 @@ export default new Vuex.Store({
       saving: false
     },
     preview: "",
-    style: "default"
+    style: "default",
+    styleSheet: "default.css"
   },
   mutations: {
     changePreviewStyle(state, style) {
-      state.style = `${process.env.BASE_URL}${style}`;
+      state.style = style;
+      state.styleSheet = `${style}.css`;
     },
     openMarkdown(state, path) {
       state.markdown.path = path;
