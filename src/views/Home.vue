@@ -1,38 +1,63 @@
 <template>
-  <v-container fluid>
-    <v-layout
-      row
-      wrap
-    >
-      <v-flex md12>
-        <file-operations />
-      </v-flex>
-      <v-flex md4>
-        <v-container>
-          <v-layout column>
-            <h2>Source</h2>
-            <textarea
-              focus
-              class="textarea"
-              :disabled="$store.state.markdown.saving"
-              :value="$store.state.markdown.content"
-              @input="$store.commit('updateMarkdown',$event.target.value)"
-            />
-            </v-layout>
-        </v-container>
-      </v-flex>
+  <v-container
+    fluid
+    fill-height
+  >
+
+    <v-layout column>
+      <v-layout
+        row
+        wrap
+      >
+
+        <v-flex md12>
+          <file-operations />
+        </v-flex>
+        <v-container
+          fill-height
+          fluid
+        >
+
+          <v-layout class="red">
+
+            <v-flex
+              md4
+              class="yellow"
+            >
+              <!--               <v-container fill-height>
+                <v-layout>
+ -->
+              <h2>Source</h2>
+              <textarea
+                autofocus
+                class="textarea"
+                :disabled="$store.state.markdown.saving"
+                :value="$store.state.markdown.content"
+                @input="$store.commit('updateMarkdown',$event.target.value)"
+              />
+              <!--  </v-layout>
+      </v-container> -->
+                  </v-flex>
+
       <v-flex md8>
-        <v-container>
-          <v-layout column>
+        <v-container fill-height>
+          <v-layout>
+            <v-flex>
+
             <h2>Preview</h2>
-            <img :src="`${publicPath}zibar.jpg`">
 
             <preview :css="$store.state.style"/>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-flex>
+
+      </v-layout>
+
+      </v-container>
+
     </v-layout>
-    <link ref="stylesheet"  :href="`${publicPath}${$store.state.styleSheet}`"/>
+      </v-layout>
 </v-container>
 </template>
 
@@ -62,7 +87,7 @@ export default {
 }
 
 .textarea {
-  min-height: 500px;
+  height: 100ch;
   resize: none;
   background: white;
   @include box-shadow();
