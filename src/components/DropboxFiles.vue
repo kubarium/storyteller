@@ -73,13 +73,12 @@
 </template>
 
 <script>
-import Dropbox from "dropbox";
+//import Dropbox from "dropbox";
 
 export default {
   data() {
     return {
       dialog: false,
-      dbx: null,
       path: "",
       entries: null,
       breadcrumbs: []
@@ -89,11 +88,13 @@ export default {
     clickEntry(entry) {
       console.log(entry);
       if (this.isFolder(entry)) {
-        this.getEntries(entry.path_lower);
+        return this.getEntries(entry.path_lower);
       }
-      /* if (path && this.isMarkdown(entry)) {
-        return this.$store.dispatch("fetchMarkdown", path);
-      } */
+
+      if (this.isMarkdown(entry)) {
+        this.$store.commit("openMarkdown", entry.path_lower);
+        return this.openFile({ path: entry.path_lower });
+      }
     },
     isFolder(entry) {
       return entry[".tag"] === "folder";
@@ -121,12 +122,27 @@ export default {
         };
       });
     },
+    openFile(path) {
+      this.$store.state.dbx
+        .filesDownload(path)
+        .then(response => {
+          var reader = new FileReader();
+          reader.addEventListener("loadend", () => {
+            this.$store.commit("updateMarkdown", reader.result);
+            this.dialog = false;
+          });
+          reader.readAsText(response.fileBlob);
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+    },
     getEntries(path) {
       this.path = path;
 
       this.crumble();
 
-      this.dbx
+      this.$store.state.dbx
         .filesListFolder({ path })
         .then(response => this.fileTree(response.entries))
         .catch(error => console.error(error));
@@ -153,10 +169,9 @@ export default {
   },
   created() {
     console.clear();
-    this.dbx = new Dropbox.Dropbox({
-      accessToken: process.env.VUE_APP_DROPBOX_ACCESS_TOKEN
-    });
-    this.getEntries(this.path);
+    this.$store
+      .dispatch("connectDropbox")
+      .then(() => this.getEntries(this.path));
   }
 };
 </script>
