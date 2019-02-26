@@ -1,7 +1,7 @@
 <template>
   <v-container
     fluid
-    fill-height
+    grid-list-md
   >
 
     <v-layout column>
@@ -13,52 +13,41 @@
         <v-flex md12>
           <file-operations />
         </v-flex>
-        <v-container
-          fill-height
+        <!-- <v-container
           fluid
+          fill-height
         >
 
-          <v-layout class="red">
+          <v-layout> -->
 
-            <v-flex
-              md4
-              class="yellow"
-            >
-              <!--               <v-container fill-height>
-                <v-layout>
- -->
-              <h2>Source</h2>
-              <textarea
-                autofocus
-                class="textarea"
-                :disabled="$store.state.markdown.saving"
-                :value="$store.state.markdown.content"
-                @input="$store.commit('updateMarkdown',$event.target.value)"
-              />
-              <!--  </v-layout>
-      </v-container> -->
-                  </v-flex>
-
-      <v-flex md8>
-        <v-container fill-height>
-          <v-layout>
-            <v-flex>
-
-            <h2>Preview</h2>
-
-            <preview :css="$store.state.style"/>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-flex>
+        <v-flex
+          sm12
+          md5
+          lg7
+        >
+          <h2>Source</h2>
+          <textarea
+            autofocus
+            class="textarea"
+            :disabled="$store.state.markdown.saving"
+            :value="$store.state.markdown.content"
+            @input="$store.commit('updateMarkdown',$event.target.value)"
+          ></textarea>
+        </v-flex>
+        <v-flex
+          sm12
+          md7
+          lg5
+        >
+          <h2>Preview</h2>
+          <preview class="preview" />
+        </v-flex>
+        <!-- </v-layout>
+        </v-container> -->
 
       </v-layout>
-
-      </v-container>
-
     </v-layout>
-      </v-layout>
-</v-container>
+  </v-container>
 </template>
 
 <script>
@@ -86,8 +75,18 @@ export default {
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 
+.source,
+.preview1 {
+  display: grid;
+  grid-template-rows: 1fr 100%;
+  align-content: space-between;
+}
+.preview {
+  min-height: 1095px;
+}
 .textarea {
-  height: 100ch;
+  width: 100%;
+  height: 100%;
   resize: none;
   background: white;
   @include box-shadow();

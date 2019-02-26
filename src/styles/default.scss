@@ -102,6 +102,11 @@ $headerColor: #58180d;
   page-break-before: always;
   page-break-after: always;
 
+  & .page{
+    page-break-before: always;
+    break-before: always;
+  }
+
   & h1,
   & h2,
   & h3,
@@ -215,5 +220,38 @@ $headerColor: #58180d;
     border-image: url("../assets/blockquote.png") 11;
     border-image-outset: 9px 0;
     box-shadow: 1px 4px 14px #888;
+  }
+
+  & .footnote {
+    position: absolute;
+    right: 80px;
+    bottom: 32px;
+    z-index: 150;
+    width: 200px;
+    font-size: .8em;
+    color: #c9ad6a;
+    text-align: right;
+  }
+
+  & .pageNumber {
+    position: absolute;
+    right: 2px;
+    bottom: 22px;
+    width: 50px;
+    font-size: .9em;
+    color: #c9ad6a;
+    text-align: center;
+  }
+
+  &:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    height: 50px;
+    width: 100%;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAC7gAAADhCAMAAABvTQiOAAACvlBMV…AADrbcx+82B+tQc7h1L7mvVRcAAHyw/+c/9n97o3WgDv8NS81N4WCuBp0AAAAASUVORK5CYII=);
+    background-size: cover;
   }
 }
