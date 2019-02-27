@@ -3,7 +3,6 @@ import Vuex from "vuex";
 //import markdown from "markdown/lib/markdown";
 import md from "markdown-it";
 import Dropbox from "dropbox";
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -28,27 +27,32 @@ export default new Vuex.Store({
       state.markdown.path = path;
     },
     updateMarkdown(state, value) {
-      state.markdown.content = value;
+      state.markdown.content = value
       state.markdown.modified = true;
-      //state.preview = markdown.toHTML(state.markdown);
-      let markdown = md({ html: true, linkify: true });
-      markdown.block.ruler.before("paragraph", "my_rule", function replace(state) {
-        console.log(state);
-      });
-      state.preview = markdown.render(state.markdown.content);
+
+      let markdown = md({html: true, linkify: true}).render(value);
+
+      state.preview = markdown
+        .split("~page")
+        .map(page => `<div class="page">${page}</div>`)
+        .join();
+
     }
   },
   actions: {
-    connectDropbox({ state }) {
+    connectDropbox({state}) {
       return new Promise(resolve => {
-        state.dbx = new Dropbox.Dropbox({ accessToken: process.env.VUE_APP_DROPBOX_ACCESS_TOKEN });
+        state.dbx = new Dropbox.Dropbox({accessToken: process.env.VUE_APP_DROPBOX_ACCESS_TOKEN});
         resolve();
       });
     },
-    saveMarkdown({ state }, path) {
+    saveMarkdown({
+      state
+    }, path) {
       state.markdown.saving = true;
       state.markdown.modified = false;
-      state.dbx
+      state
+        .dbx
         .filesUpload({
           path: state.markdown.path,
           contents: state.markdown.content,

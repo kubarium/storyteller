@@ -25,7 +25,7 @@ export default {
 <style lang="scss" scoped>
 .renderer {
   overflow-y: scroll;
-  /* height: 100ch; */
+  height: 100vh;
 }
 @import "../styles/default.scss";
 </style>

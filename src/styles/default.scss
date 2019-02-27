@@ -70,7 +70,7 @@
 
 $headerColor: #58180d;
 
-/deep/ .default {
+/deep/ .default .page {
   margin-bottom: 8px;
   border-radius: 2px;
   @include box-shadow();
@@ -85,7 +85,7 @@ $headerColor: #58180d;
       -moz-column-width: 8cm;
       -webkit-column-gap: 1cm;
       -moz-column-gap: 1cm; */
-  counter-increment: phb-page-numbers;
+  counter-increment: page-numbers;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
@@ -94,18 +94,13 @@ $headerColor: #58180d;
   padding: 1cm 1.7cm;
   padding-bottom: 1.5cm;
   background-color: #eee5ce;
-  background-image: url("../assets/paper-3.jpg");
-  background-position: center center;
+  background-image: url("../assets/zibar.jpg");
+  background-position: top left;
   font-family: BookSanity;
   font-size: 0.317cm;
   text-rendering: optimizeLegibility;
   page-break-before: always;
   page-break-after: always;
-
-  & .page{
-    page-break-before: always;
-    break-before: always;
-  }
 
   & h1,
   & h2,
@@ -228,7 +223,7 @@ $headerColor: #58180d;
     bottom: 32px;
     z-index: 150;
     width: 200px;
-    font-size: .8em;
+    font-size: 0.8em;
     color: #c9ad6a;
     text-align: right;
   }
@@ -238,12 +233,16 @@ $headerColor: #58180d;
     right: 2px;
     bottom: 22px;
     width: 50px;
-    font-size: .9em;
+    font-size: 0.9em;
     color: #c9ad6a;
     text-align: center;
   }
 
-  &:after{
+  & .pageNumber.auto::after {
+    content: counter(page-numbers);
+  }
+
+  &:after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -251,7 +250,7 @@ $headerColor: #58180d;
     z-index: 100;
     height: 50px;
     width: 100%;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAC7gAAADhCAMAAABvTQiOAAACvlBMV…AADrbcx+82B+tQc7h1L7mvVRcAAHyw/+c/9n97o3WgDv8NS81N4WCuBp0AAAAASUVORK5CYII=);
+    background-image: url("../assets/footer.png");
     background-size: cover;
   }
 }
