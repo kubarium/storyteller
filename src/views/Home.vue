@@ -27,8 +27,9 @@
           xl7
         >
           <h2>Source</h2>
-          <layout-operations />
-          <content-operations />
+          <content-operations type="layout" />
+          <content-operations type="basic" />
+          <content-operations type="table" />
           <textarea
             autofocus
             id="source"
@@ -58,7 +59,6 @@
 <script>
 // @ is an alias to /src
 import FileOperations from "@/components/FileOperations.vue";
-import LayoutOperations from "@/components/LayoutOperations.vue";
 import ContentOperations from "@/components/ContentOperations.vue";
 import Preview from "@/components/Preview.vue";
 
@@ -66,7 +66,6 @@ export default {
   name: "home",
   components: {
     FileOperations,
-    LayoutOperations,
     ContentOperations,
     Preview
   },
