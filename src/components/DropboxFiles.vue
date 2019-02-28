@@ -123,7 +123,7 @@ export default {
       });
     },
     openFile(path) {
-      this.$store.state.dbx
+      this.$store.state.file.dbx
         .filesDownload(path)
         .then(response => {
           var reader = new FileReader();

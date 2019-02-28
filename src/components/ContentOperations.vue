@@ -38,7 +38,7 @@ export default {
       return `add${title.split(" ").join("")}`;
     },
     applyOperation(item) {
-      this.$store.dispatch(this.actionCondenser(item)).then(position => {
+      this.$store.dispatch("applyOperation", this.actionCondenser(item)).then(position => {
         var textarea = document.getElementById("source");
 
         textarea.focus();
