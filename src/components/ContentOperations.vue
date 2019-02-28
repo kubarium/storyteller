@@ -16,7 +16,7 @@
         <v-list-tile
           v-for="item in $store.getters.operations(type)"
           :key="item"
-          @click="$store.dispatch(actionCondenser(item))"
+          @click="applyOperation(item)"
         >
           <v-list-tile-content>
             <v-list-tile-title>{{ item }}</v-list-tile-title>
@@ -36,6 +36,15 @@ export default {
   methods: {
     actionCondenser(title) {
       return `add${title.split(" ").join("")}`;
+    },
+    applyOperation(item) {
+      this.$store.dispatch(this.actionCondenser(item)).then(position => {
+        var textarea = document.getElementById("source");
+
+        textarea.focus();
+        textarea.selectionStart = position;
+        textarea.selectionEnd = position;
+      });
     }
   }
 };
