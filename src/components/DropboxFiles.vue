@@ -142,7 +142,7 @@ export default {
 
       this.crumble();
 
-      this.$store.state.dbx
+      this.$store.state.file.dbx
         .filesListFolder({ path })
         .then(response => this.fileTree(response.entries))
         .catch(error => console.error(error));
@@ -168,7 +168,6 @@ export default {
     }
   },
   created() {
-    console.clear();
     this.$store
       .dispatch("connectDropbox")
       .then(() => this.getEntries(this.path));

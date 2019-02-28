@@ -34,8 +34,8 @@
             autofocus
             id="source"
             class="textarea"
-            :disabled="$store.state.markdown.saving"
-            :value="$store.state.markdown.content"
+            :disabled="$store.state.file.markdown.saving"
+            :value="$store.state.file.markdown.content"
             @input="$store.commit('updateMarkdown',$event.target.value)"
           ></textarea>
         </v-flex>

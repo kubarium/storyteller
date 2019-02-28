@@ -2,7 +2,7 @@
   <div class="renderer">
     <div
       :class="'default'"
-      v-html="$store.state.preview"
+      v-html="$store.state.file.preview"
     />
   </div>
 </template>

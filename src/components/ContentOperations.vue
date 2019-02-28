@@ -14,12 +14,12 @@
     <v-list dense>
       <v-list dense>
         <v-list-tile
-          v-for="item in $store.state.contentOperations[type]"
-          :key="item.title"
-          @click="$store.dispatch(actionCondenser(item.title))"
+          v-for="item in $store.getters.operations(type)"
+          :key="item"
+          @click="$store.dispatch(actionCondenser(item))"
         >
           <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            <v-list-tile-title>{{ item }}</v-list-tile-title>
           </v-list-tile-content>
 
         </v-list-tile>
