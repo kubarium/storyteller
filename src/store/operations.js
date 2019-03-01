@@ -8,6 +8,16 @@ export const addWideContent = `<div class="wide">Wide Content</div>`;
 
 export const addSomeRoom = `<div style='margin:5ch 0'></div>`;
 
+export const addCoverPage = `
+<div class="cover wide">
+
+# Cover Title Goes Here
+
+##### Your awesome subtitle with a catchy phrase goes here
+</div>
+${addPageBreak}
+`
+
 export const addWideClassTable = `
 <div class="classTable wide">
 
@@ -34,6 +44,7 @@ export const addWideClassTable = `
 | 18th | +6 | ─ | 12 | 11 | 4 | 3 | 3 | 3 | 3 | 2 | 2 | — | — |
 | 19th | +6 | ─ | 12 | 12 | 4 | 3 | 3 | 3 | 3 | 2 | 2 | — | — |
 | 20th | +6 | ─ | 13 | 12 | 4 | 3 | 3 | 3 | 3 | 2 | 2 | 1 | — |
+
 </div>
 `;
 
@@ -47,5 +58,43 @@ export const addClassTable = `
 | 2nd | +2 | Police Necromancer | +2 |
 | 3rd | +2 | Consecrated Biochemistry | +2 |
 | 17th | +6 | Gunslinger Corruptor | +8 |
+
 </div>
 `;
+
+export const addTable = `
+##### Table Header
+| Topic 1 | Topic 2 |
+|:----:|:-------------|
+| Content | Content |
+`
+
+export const addWideTable = `
+<div class="wide">
+${addTable}
+</div>
+`
+
+export const addCompactTables = `
+<div style='column-count:2'>
+
+| d10 | Damage Type |
+|:---:|:------------|
+|  1  | Acid        |
+|  2  | Cold        |
+|  3  | Fire        |
+|  4  | Force       |
+|  5  | Lightning   |
+
+\`\`\`
+\`\`\`
+
+| d10 | Damage Type |
+|:---:|:------------|
+|  6  | Necrotic    |
+|  7  | Poison      |
+|  8  | Psychic     |
+|  9  | Radiant     |
+|  10 | Thunder     |
+</div>
+`

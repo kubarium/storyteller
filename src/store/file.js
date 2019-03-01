@@ -27,18 +27,11 @@ export default {
 
       let markdown = md({ html: true, linkify: true }).render(value);
 
-      state.preview = markdown
-        .split("~page")
-        .map(page => `<div class="page">${page}</div>`)
-        .join();
-    }
-  },
-  actions: {
-    connectDropbox({ state }) {
-      return new Promise(resolve => {
-        state.dbx = new Dropbox.Dropbox({ accessToken: process.env.VUE_APP_DROPBOX_ACCESS_TOKEN });
-        resolve();
-      });
+            state.preview = markdown
+                .split("~page")
+                .map(page => `<div class="page">${page}</div>`)
+                .join("");
+        }
     },
     saveMarkdown({ state }) {
       state.markdown.saving = true;
