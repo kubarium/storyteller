@@ -1,11 +1,9 @@
-import { addPageBreak } from "./utils";
 import * as operations from "./operations";
-import { Promise } from "q";
 
 export default {
   state: {},
   getters: {
-    operations: state => type => {
+    operations: () => type => {
       switch (type) {
         case "basic":
           return [

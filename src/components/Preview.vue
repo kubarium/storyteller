@@ -25,7 +25,12 @@ export default {
 <style lang="scss" scoped>
 .renderer {
   overflow-y: scroll;
-  height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid red;
+  align-items: center;
+  justify-content: center;
 }
 @import "../styles/default.scss";
 </style>

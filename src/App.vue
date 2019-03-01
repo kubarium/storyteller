@@ -41,3 +41,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+main {
+  outline: 1px solid blue;
+}
+</style>

@@ -9,10 +9,10 @@
         row
         wrap
       >
-
+        <!-- 
         <v-flex md12>
           <file-operations />
-        </v-flex>
+        </v-flex> -->
         <!-- <v-container
           fluid
           fill-height
@@ -25,6 +25,7 @@
           md5
           lg5
           xl7
+          fill-height
         >
           <h2>Source</h2>
           <content-operations type="layout" />
