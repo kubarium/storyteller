@@ -30,7 +30,7 @@ export default {
             state.preview = markdown
                 .split("~page")
                 .map(page => `<div class="page">${page}</div>`)
-                .join();
+                .join("");
         }
     },
     actions : {

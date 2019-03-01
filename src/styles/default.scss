@@ -102,6 +102,16 @@ $headerColor: #58180d;
   page-break-before: always;
   page-break-after: always;
 
+  & .cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      margin: 22ch 0 3ch;
+    }
+  }
+
   & h1,
   & h2,
   & h3,
@@ -147,6 +157,7 @@ $headerColor: #58180d;
     font-weight: 900;
     font-family: ScalySansSmallCaps;
     margin-bottom: 0.2em;
+    color: initial;
   }
 
   & strong {
@@ -162,6 +173,7 @@ $headerColor: #58180d;
   sub {
     font-size: smaller;
     line-height: 0;
+    position: initial;
   }
   & sup {
     vertical-align: super;
@@ -198,39 +210,37 @@ $headerColor: #58180d;
     margin: 0;
     border-collapse: collapse;
     /* border-spacing: 0; */
-    
-    
   }
 
-  & table{
+  & table {
     font-family: ScalySans;
     width: 100%;
     margin-bottom: 1em;
     font-size: 10pt;
-thead {
+    thead {
       display: table-row-group;
       font-weight: 800;
 
       th {
-    vertical-align: bottom;
-    padding-bottom: .3em;
-    padding-right: .1em;
-    padding-left: .1em;
-}
+        vertical-align: bottom;
+        padding-bottom: 0.3em;
+        padding-right: 0.1em;
+        padding-left: 0.1em;
+      }
     }
 
- 
-    
-          tbody {tr:nth-child(odd) {
-          background-color: #e0e5c1;
-        }
+    tbody {
+      tr:nth-child(odd) {
+        background-color: #e0e5c1;
+      }
 
       tr td {
-      padding: .3em .1em;
-    }}
+        padding: 0.3em 0.1em;
+      }
+    }
   }
 
-  & .classTable{
+  & .classTable {
     margin: 25px 0 40px;
     border-collapse: separate;
     background-color: #fff;
@@ -261,7 +271,7 @@ thead {
     box-shadow: 1px 4px 14px #888;
   }
 
-  & .wide{
+  & .wide {
     column-span: all;
   }
 
