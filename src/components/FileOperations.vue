@@ -33,7 +33,7 @@
         icon
         :disabled="$store.state.file.markdown.path.length===0 || $store.state.file.markdown.modified"
       >
-        <v-icon>publish</v-icon>
+        <v-icon>picture_as_pdf</v-icon>
       </v-btn>
       <v-divider vertical></v-divider>
 

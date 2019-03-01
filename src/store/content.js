@@ -1,7 +1,14 @@
 import * as operations from "./operations";
 
 export default {
-  state: {},
+  state: {
+    codemirror: null,
+    cursorPosition: {
+      line: 0,
+      ch: 0
+    }
+    //operations: { ...operations }
+  },
   getters: {
     operations: () => type => {
       switch (type) {
@@ -25,29 +32,19 @@ export default {
       }
     }
   },
-  mutations: {},
+  mutations: {
+    registerCodeMirror(state, codemirror) {
+      state.codemirror = codemirror;
+    },
+    updateCursor(state, cursorPosition) {
+      state.cursorPosition = cursorPosition;
+    }
+  },
   actions: {
-    applyOperation({ commit, rootState }, operation) {
-      return new Promise(res => {
-        //this is force updating the source textarea with the injected content
-        var textarea = document.getElementById("source");
-
-        var startPos = textarea.selectionStart;
-        var endPos = textarea.selectionEnd;
-        var currentValue = rootState.file.markdown.content;
-        var injected = `\n${operations[operation]}\n`;
-        if (textarea.selectionStart || textarea.selectionStart == "0") {
-          commit(
-            "updateMarkdown",
-            currentValue.substring(0, startPos) + injected + currentValue.substring(endPos, currentValue.length)
-          );
-        } else {
-          //if there is a selection, ignore it and append content
-          commit("updateMarkdown", rootState.file.markdown.content + injected);
-        }
-        // expose the new cursor position
-        res(startPos + injected.length);
-      });
+    applyOperation({ state }, operation) {
+      state.codemirror.getDoc().replaceRange(`\n${operations[operation]}\n`, state.codemirror.getCursor());
+      state.codemirror.focus();
+      state.codemirror.scrollIntoView(state.cursorPosition);
     }
   }
 };

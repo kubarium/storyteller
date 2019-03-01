@@ -1,10 +1,18 @@
 <template>
-  <div class="renderer">
-    <div
-      :class="'default'"
-      v-html="$store.state.file.preview"
-    />
-  </div>
+  <v-container
+    fill-height
+    class="renderer"
+  >
+    <v-layout>
+      <v-flex>
+        <div
+          :class="'default'"
+          v-html="$store.state.file.preview"
+        />
+      </v-flex>
+    </v-layout>
+  </v-container>
+  <!-- <div class="renderer"></div> -->
 </template>
 
 <script>
@@ -25,12 +33,11 @@ export default {
 <style lang="scss" scoped>
 .renderer {
   overflow-y: scroll;
-  height: 100%;
+  outline: 1px solid red;
+  /* height: calc(100vh - 128px);
   display: flex;
   flex-direction: column;
-  outline: 1px solid red;
-  align-items: center;
-  justify-content: center;
+  align-items: center; */
 }
 @import "../styles/default.scss";
 </style>

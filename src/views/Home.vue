@@ -9,10 +9,10 @@
         row
         wrap
       >
-        <!-- 
+
         <v-flex md12>
           <file-operations />
-        </v-flex> -->
+        </v-flex>
         <!-- <v-container
           fluid
           fill-height
@@ -31,20 +31,29 @@
           <content-operations type="layout" />
           <content-operations type="basic" />
           <content-operations type="table" />
-          <textarea
+          <!-- <textarea
             autofocus
             id="source"
             class="textarea"
             :disabled="$store.state.file.markdown.saving"
             :value="$store.state.file.markdown.content"
             @input="$store.commit('updateMarkdown',$event.target.value)"
-          ></textarea>
+          ></textarea> -->
+          <codemirror
+            ref="cm"
+            :options="cmOptions"
+            :value="$store.state.file.markdown.content"
+            @input="updateMarkdown"
+            @focus="focus"
+            @cursorActivity="updateCursor"
+          />
         </v-flex>
         <v-flex
           sm12
           md7
           lg7
           xl5
+          fill-height
         >
           <h2>Preview</h2>
           <preview class="preview" />
@@ -62,18 +71,69 @@
 import FileOperations from "@/components/FileOperations.vue";
 import ContentOperations from "@/components/ContentOperations.vue";
 import Preview from "@/components/Preview.vue";
+import { codemirror } from "vue-codemirror";
+import "codemirror/lib/codemirror.css";
 
 export default {
   name: "home",
   components: {
     FileOperations,
     ContentOperations,
-    Preview
+    Preview,
+    codemirror
+  },
+  methods: {
+    focus(codemirror) {
+      //console.log(codemirror.getCursor());
+    },
+    updateCursor() {
+      this.$store.commit("updateCursor", this.codemirror.getCursor());
+    },
+    updateMarkdown(value) {
+      this.$store.commit("updateMarkdown", value);
+    },
+    makeBold() {
+      this.codemirror.replaceSelection(
+        "**" + this.codemirror.getSelection() + "**",
+        "around"
+      );
+    },
+    makeItalic() {
+      this.codemirror.replaceSelection(
+        "*" + this.codemirror.getSelection() + "*",
+        "around"
+      );
+    }
   },
   data() {
     return {
+      cmOptions: {
+        // codemirror options
+        tabSize: 4,
+        mode: "text/x-markdowm",
+        theme: "base16-dark",
+        lineNumbers: true,
+        lineWrapping: true,
+        line: true,
+        highlightFormatting: true,
+        extraKeys: {
+          "Cmd-B": this.makeBold,
+          "Ctrl-B": this.makeBold,
+          "Cmd-I": this.makeItalic,
+          "Ctrl-I": this.makeItalic
+        }
+        // more codemirror options, 更多 codemirror 的高级配置...
+      },
       publicPath: process.env.BASE_URL
     };
+  },
+  mounted() {
+    this.$store.commit("registerCodeMirror", this.codemirror);
+  },
+  computed: {
+    codemirror() {
+      return this.$refs.cm.codemirror;
+    }
   }
 };
 </script>
