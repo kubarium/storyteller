@@ -38,15 +38,7 @@ export default {
       return `add${title.split(" ").join("")}`;
     },
     applyOperation(item) {
-      this.$store
-        .dispatch("applyOperation", this.actionCondenser(item))
-        .then(position => {
-          /* var textarea = document.getElementById("source");
-
-        textarea.focus();
-        textarea.selectionStart = position;
-        textarea.selectionEnd = position; */
-        });
+      this.$store.dispatch("applyOperation", this.actionCondenser(item));
     }
   }
 };

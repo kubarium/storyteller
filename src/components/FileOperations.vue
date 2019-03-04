@@ -10,28 +10,35 @@
       <v-btn
         @click="$store.dispatch('saveMarkdown')"
         icon
-        :disabled="$store.state.file.markdown.path.length===0"
+        :disabled="$store.state.file.markdown.path.length===0 || !$store.state.file.markdown.modified"
       >
         <v-icon>save</v-icon>
       </v-btn>
       <v-btn
-        @click="$store.commit('changePreviewStyle',`kubar.css`)"
+        @click="$store.dispatch('deleteCurrentMarkdown')"
         icon
         :disabled="$store.state.file.markdown.path.length===0"
       >
         <v-icon>delete_forever</v-icon>
       </v-btn>
-      <v-btn
-        @click="$store.dispatch('revertMarkdown')"
-        icon
-        :disabled="$store.state.file.markdown.path.length===0"
-      >
-        <v-icon>settings_backup_restore</v-icon>
-      </v-btn>
+
+      <v-tooltip bottom>
+        <template slot="activator">
+          <v-btn
+            @click="$store.dispatch('revertMarkdown')"
+            icon
+            :disabled="$store.state.file.markdown.path.length===0"
+          >
+            <v-icon>settings_backup_restore</v-icon>
+          </v-btn>
+        </template>
+        <span>Revert</span>
+      </v-tooltip>
+
       <v-btn
         @click="$store.dispatch('publishMarkdown')"
         icon
-        :disabled="$store.state.file.markdown.path.length===0 || $store.state.file.markdown.modified"
+        :disabled="$store.state.file.markdown.path.length===0"
       >
         <v-icon>picture_as_pdf</v-icon>
       </v-btn>
