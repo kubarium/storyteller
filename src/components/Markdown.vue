@@ -1,6 +1,7 @@
 <template>
   <codemirror
     ref="cm"
+    class="source"
     :options="cmOptions"
     :value="$store.state.file.markdown.content"
     @input="updateMarkdown"
@@ -75,5 +76,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "../styles/storyteller.scss";
+
+.source {
+  height: 70vh;
+  @include box-shadow();
+}
 </style>
+
