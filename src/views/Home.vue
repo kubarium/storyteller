@@ -8,9 +8,6 @@
 
         <v-flex sm12 md5 lg5 xl7 fill-height>
           <h2>Source</h2>
-          <content-operations type="layout" />
-          <content-operations type="basic" />
-          <content-operations type="table" />
           <markdown />
         </v-flex>
         <v-flex sm12 md7 lg7 xl5 fill-height>
@@ -27,7 +24,6 @@
 <script>
 // @ is an alias to /src
 import FileOperations from "@/components/FileOperations.vue";
-import ContentOperations from "@/components/ContentOperations.vue";
 import Preview from "@/components/Preview.vue";
 import Markdown from "@/components/Markdown.vue";
 
@@ -35,7 +31,6 @@ export default {
   name: "home",
   components: {
     FileOperations,
-    ContentOperations,
     Preview,
     Markdown
   }

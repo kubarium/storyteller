@@ -4,6 +4,9 @@
       $store.state.file.markdown.path || "Create or open a file"
     }}</v-toolbar-title>
     <v-spacer />
+    <content-operations type="layout" />
+    <content-operations type="basic" />
+    <content-operations type="table" />
     <v-toolbar-items>
       <v-btn
         @click="$store.dispatch('saveMarkdown')"
@@ -50,8 +53,12 @@
 </template>
 
 <script>
+import ContentOperations from "@/components/ContentOperations.vue";
 export default {
   name: "file-operations",
+  components: {
+    ContentOperations
+  },
   computed: {
     isMarkdownOpen() {
       return this.$store.state.file.markdown.path.length === 0;
