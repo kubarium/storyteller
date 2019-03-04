@@ -5,10 +5,7 @@
     scrollable
     @input="$store.dispatch('refreshEntries')"
   >
-    <v-btn
-      slot="activator"
-      flat
-    >
+    <v-btn slot="activator" flat>
       Dropbox Files
     </v-btn>
 
@@ -16,38 +13,30 @@
       <v-card-title>
         Your Dropbox Files
         <v-spacer />
-        <v-btn
-          icon
-          flat
-          @click="$store.dispatch('refreshEntries')"
-        >
+        <v-btn icon flat @click="$store.dispatch('refreshEntries')">
           <v-icon>refresh</v-icon>
-
         </v-btn>
       </v-card-title>
       <v-divider />
       <v-breadcrumbs :items="$store.state.dropbox.breadcrumbs">
-        <template
-          slot="item"
-          slot-scope="props"
-        >
-          <!-- <a :href="props.item.href">{{ props.item.text }}</a> -->
-          <a @click="clickEntry(props.item)">{{props.item.text}}</a>
+        <template slot="item" slot-scope="props">
+          <a @click="clickEntry(props.item)">{{ props.item.text }}</a>
         </template>
       </v-breadcrumbs>
       <v-divider />
       <v-card-text style="height:300px">
         <v-list>
           <template v-for="(entry, index) in $store.state.dropbox.entries">
-
             <v-list-tile
               :disabled="$store.state.dropbox.fetching"
               :key="entry.title"
               @click="clickEntry(entry)"
             >
               <v-list-tile-avatar>
-                <v-icon v-if="entry['.tag']==='folder'">folder</v-icon>
-                <v-icon v-else-if="entry['.tag']==='parent'">arrow_upward</v-icon>
+                <v-icon v-if="entry['.tag'] === 'folder'">folder</v-icon>
+                <v-icon v-else-if="entry['.tag'] === 'parent'"
+                  >arrow_upward</v-icon
+                >
                 <v-icon v-else>edit</v-icon>
               </v-list-tile-avatar>
 
@@ -59,12 +48,15 @@
                 <v-btn
                   :disabled="$store.state.dropbox.fetching"
                   icon
-                  @click.stop="$store.dispatch('deleteMarkdown', entry.path_lower)"
+                  @click.stop="
+                    $store.dispatch('deleteMarkdown', entry.path_lower)
+                  "
                 >
-                  <v-icon v-if="entry['.tag']==='file'">delete_forever</v-icon>
+                  <v-icon v-if="entry['.tag'] === 'file'"
+                    >delete_forever</v-icon
+                  >
                 </v-btn>
               </v-list-tile-action>
-
             </v-list-tile>
 
             <v-divider
@@ -79,11 +71,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn
-          color="primary"
-          flat
-          @click="$store.state.file.dialog = false"
-        >
+        <v-btn color="primary" flat @click="$store.state.file.dialog = false">
           Close
         </v-btn>
       </v-card-actions>
@@ -92,8 +80,6 @@
 </template>
 
 <script>
-//import Dropbox from "dropbox";
-
 export default {
   data() {
     return {};
