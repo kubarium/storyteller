@@ -2,7 +2,9 @@
   <v-toolbar dark dense>
     <v-toolbar-title>Preview</v-toolbar-title>
     <v-spacer/>
+
     <v-toolbar-items>
+      <style-selector/>
       <v-btn @click="$store.dispatch('saveMarkdown')" icon :disabled="isMarkdownOpen || !modified">
         <v-icon>save</v-icon>
       </v-btn>
@@ -32,8 +34,12 @@
 </template>
 
 <script>
+import StyleSelector from "@/components/StyleSelector.vue";
 export default {
   name: "preview-operations",
+  components: {
+    StyleSelector
+  },
   computed: {
     isMarkdownOpen() {
       return this.$store.state.markdown.path.length === 0;
