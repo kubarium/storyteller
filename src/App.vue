@@ -19,6 +19,7 @@
       :href="`${publicPath}styles/${$store.getters.activeStyle}.css`"
       rel="stylesheet"
     />
+    <iframe id="print" class="print" :srcdoc="$store.getters.pring"></iframe>
   </v-app>
 </template>
 
@@ -46,5 +47,13 @@ export default {
   height: 80vh;
   overflow-y: scroll;
   @include box-shadow();
+}
+.print {
+  width: 0;
+  height: 0;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  border: 0;
 }
 </style>

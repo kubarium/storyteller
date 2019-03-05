@@ -1,27 +1,40 @@
 <template>
   <v-toolbar dark dense>
     <v-toolbar-title>Preview</v-toolbar-title>
-    <v-spacer/>
+    <v-spacer />
 
     <v-toolbar-items>
-      <style-selector/>
-      <v-btn @click="$store.dispatch('saveMarkdown')" icon :disabled="isMarkdownOpen || !modified">
+      <style-selector />
+      <paper-size-selector />
+      <v-btn
+        @click="$store.dispatch('saveMarkdown')"
+        icon
+        :disabled="isMarkdownOpen || !modified"
+      >
         <v-icon>save</v-icon>
       </v-btn>
-      <v-btn @click="$store.dispatch('deleteFromDropbox')" icon :disabled="isMarkdownOpen">
+      <v-btn
+        @click="$store.dispatch('deleteFromDropbox')"
+        icon
+        :disabled="isMarkdownOpen"
+      >
         <v-icon>delete_forever</v-icon>
       </v-btn>
 
       <v-tooltip bottom>
         <template slot="activator">
-          <v-btn @click="$store.dispatch('revertMarkdown')" icon :disabled="isMarkdownOpen">
+          <v-btn
+            @click="$store.dispatch('revertMarkdown')"
+            icon
+            :disabled="isMarkdownOpen"
+          >
             <v-icon>settings_backup_restore</v-icon>
           </v-btn>
         </template>
         <span>Revert</span>
       </v-tooltip>
 
-      <v-btn @click="$store.dispatch('publishMarkdown')" icon :disabled="isMarkdownOpen">
+      <v-btn @click="$store.dispatch('publishMarkdown')" icon>
         <v-icon>picture_as_pdf</v-icon>
       </v-btn>
       <v-divider vertical></v-divider>
@@ -35,10 +48,12 @@
 
 <script>
 import StyleSelector from "@/components/StyleSelector.vue";
+import PaperSizeSelector from "@/components/PaperSizeSelector.vue";
 export default {
   name: "preview-operations",
   components: {
-    StyleSelector
+    StyleSelector,
+    PaperSizeSelector
   },
   computed: {
     isMarkdownOpen() {
