@@ -1,7 +1,8 @@
 <template>
   <v-menu open-on-hover offset-y>
-    <v-btn slot="activator" color="primary" dark>
+    <v-btn slot="activator" flat>
       {{ type }}
+      <v-icon>arrow_drop_down</v-icon>
     </v-btn>
 
     <v-list dense>

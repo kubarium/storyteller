@@ -62,21 +62,22 @@
   font-weight: normal;
   font-style: normal;
 }
-/deep/ .kubar {
+.default .page {
   margin-bottom: 8px;
   border-radius: 2px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   column-count: 2;
   column-fill: auto;
   column-gap: 1cm;
   column-width: 8cm;
   /* -webkit-column-count: 2;
-          -moz-column-count: 2;
-          -webkit-column-width: 8cm;
-          -moz-column-width: 8cm;
-          -webkit-column-gap: 1cm;
-          -moz-column-gap: 1cm; */
-  counter-increment: phb-page-numbers;
+      -moz-column-count: 2;
+      -webkit-column-width: 8cm;
+      -moz-column-width: 8cm;
+      -webkit-column-gap: 1cm;
+      -moz-column-gap: 1cm; */
+  counter-increment: page-numbers;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
@@ -85,105 +86,152 @@
   padding: 1cm 1.7cm;
   padding-bottom: 1.5cm;
   background-color: #eee5ce;
-  background-image: url("../assets/zibar.jpg");
+  background-image: url("../assets/paper-3.jpg");
+  background-position: top left;
   font-family: BookSanity;
   font-size: 0.317cm;
   text-rendering: optimizeLegibility;
   page-break-before: always;
   page-break-after: always;
 }
-/deep/ .kubar h1,
-/deep/ .kubar h2,
-/deep/ .kubar h3,
-/deep/ .kubar h4,
-/deep/ .kubar h5,
-/deep/ .kubar h6 {
+.default .page .cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.default .page .cover h1 {
+  margin: 22ch 0 3ch;
+}
+.default .page h1,
+.default .page h2,
+.default .page h3,
+.default .page h4,
+.default .page h5,
+.default .page h6 {
   margin-top: 0.2em;
   margin-bottom: 0.2em;
   font-family: MrJeeves;
   font-weight: 800;
-  color: blue;
+  color: #ff0000;
 }
-/deep/ .kubar h1 {
+.default .page h1 {
   font-size: 0.987cm;
   column-span: all;
 }
-/deep/ .kubar h1 + p::first-letter {
+.default .page h1 + p::first-letter {
   font-size: 10em;
   float: left;
   font-family: Solberry;
   color: #222;
   line-height: 0.8em;
 }
-/deep/ .kubar h2 {
+.default .page h2 {
   font-size: 0.705cm;
 }
-/deep/ .kubar h3 {
+.default .page h3 {
   font-size: 0.529cm;
   border-bottom: 2px solid #c9ad6a;
 }
-/deep/ .kubar h4 {
+.default .page h4 {
   font-size: 0.458cm;
   margin-bottom: 0;
 }
-/deep/ .kubar h5 {
+.default .page h5 {
   font-size: 0.423cm;
   font-weight: 900;
   font-family: ScalySansSmallCaps;
   margin-bottom: 0.2em;
+  color: initial;
 }
-/deep/ .kubar strong {
+.default .page strong {
   font-weight: bold;
   letter-spacing: 0.03em;
 }
-/deep/ .kubar pre,
-/deep/ .kubar code {
+.default .page pre,
+.default .page code {
   visibility: hidden;
   -webkit-column-break-after: always;
 }
-/deep/ .kubar sup,
-/deep/ .kubar sub {
+.default .page sup,
+.default .page sub {
   font-size: smaller;
   line-height: 0;
+  position: initial;
 }
-/deep/ .kubar sup {
+.default .page sup {
   vertical-align: super;
 }
-/deep/ .kubar sub {
+.default .page sub {
   vertical-align: sub;
 }
-/deep/ .kubar ul,
-/deep/ .kubar ol {
+.default .page ul,
+.default .page ol {
   margin-bottom: 0.8em;
   padding-left: 1.4em;
   line-height: 1.3em;
   list-style-position: outside;
 }
-/deep/ .kubar ul + p,
-/deep/ .kubar ol + p {
+.default .page ul + p,
+.default .page ol + p {
   text-indent: 1em;
 }
-/deep/ .kubar ul {
+.default .page ul {
   list-style-type: disc;
 }
-/deep/ .kubar ol {
+.default .page ol {
   list-style-type: decimal;
 }
-/deep/ .kubar p,
-/deep/ .kubar blockquote,
-/deep/ .kubar table {
+.default .page p,
+.default .page blockquote,
+.default .page table {
   page-break-inside: avoid;
   break-inside: avoid;
   padding-bottom: 0.8em;
   line-height: 1.3em;
   margin: 0;
-  /* overflow: hidden; */
+  text-align: justify;
+  border-collapse: collapse;
+  /* border-spacing: 0; */
 }
-/deep/ .kubar p + p {
+.default .page table {
+  font-family: ScalySans;
+  width: 100%;
+  margin-bottom: 1em;
+  font-size: 10pt;
+}
+.default .page table thead {
+  display: table-row-group;
+  font-weight: 800;
+}
+.default .page table thead th {
+  vertical-align: bottom;
+  padding-bottom: 0.3em;
+  padding-right: 0.1em;
+  padding-left: 0.1em;
+}
+.default .page table tbody tr:nth-child(odd) {
+  background-color: #e0e5c1;
+}
+.default .page table tbody tr td {
+  padding: 0.3em 0.1em;
+}
+.default .page .classTable {
+  margin: 25px 0 40px;
+  border-collapse: separate;
+  background-color: #fff;
+  border: initial;
+  border-style: solid;
+  border-image-outset: 25px 17px;
+  border-image-repeat: stretch;
+  border-image-slice: 150 200 150 200;
+  border-image-source: url(../assets/table.png);
+  border-image-width: 47px;
+}
+.default .page p + p {
   text-indent: 1em;
   margin-top: -0.8em;
 }
-/deep/ .kubar blockquote {
+.default .page blockquote {
   font-family: ScalySans;
   box-sizing: border-box;
   margin-bottom: 1em;
@@ -194,4 +242,40 @@
   border-image: url("../assets/blockquote.png") 11;
   border-image-outset: 9px 0;
   box-shadow: 1px 4px 14px #888;
+}
+.default .page .wide {
+  column-span: all;
+}
+.default .page .footnote {
+  position: absolute;
+  right: 80px;
+  bottom: 32px;
+  z-index: 150;
+  width: 200px;
+  font-size: 0.8em;
+  color: #c9ad6a;
+  text-align: right;
+}
+.default .page .pageNumber {
+  position: absolute;
+  right: 2px;
+  bottom: 22px;
+  width: 50px;
+  font-size: 0.9em;
+  color: #c9ad6a;
+  text-align: center;
+}
+.default .page .pageNumber.auto::after {
+  content: counter(page-numbers);
+}
+.default .page:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  height: 50px;
+  width: 100%;
+  background-image: url("../assets/footer.png");
+  background-size: cover;
 }

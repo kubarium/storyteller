@@ -3,7 +3,7 @@
     ref="cm"
     class="source"
     :options="cmOptions"
-    :value="$store.state.file.markdown.content"
+    :value="$store.state.markdown.content"
     @input="updateMarkdown"
     @cursorActivity="updateCursor"
   />
@@ -60,8 +60,7 @@ export default {
           "Cmd-I": this.makeItalic,
           "Ctrl-I": this.makeItalic
         }
-      },
-      publicPath: process.env.BASE_URL
+      }
     };
   },
   mounted() {
@@ -81,6 +80,7 @@ export default {
 
 .source {
   height: 70vh;
+  outline: 1px solid red;
   @include box-shadow();
 }
 </style>

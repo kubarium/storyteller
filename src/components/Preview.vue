@@ -1,7 +1,9 @@
 <template>
-  <div class="renderer" @scroll.passive="updatePreviewPagination">
-    <div :class="'default'" v-html="$store.state.file.preview" />
-  </div>
+  <v-container class="renderer" @scroll.passive="updatePreviewPagination">
+    <div :class="'default'" v-html="$store.state.markdown.preview"/>
+  </v-container>
+  <!-- <div>
+  </div>-->
 </template>
 
 <script>
@@ -26,7 +28,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-@import "../styles/default.scss";
-</style>

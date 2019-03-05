@@ -1,17 +1,18 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import content from "./content"
+import codemirror from "./codemirror"
 import dropbox from "./dropbox"
-import file from "./file"
-
+import markdown from "./markdown"
+import preview from './preview';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
-    content,
+    codemirror,
     dropbox,
-    file
+    markdown,
+    preview
   }
 });
 

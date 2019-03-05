@@ -1,20 +1,21 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar app dense>
       <v-toolbar-title class="headline text-uppercase">
         <span>Storyteller</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat>
-        <span class="mr-2">Stories</span>
-      </v-btn>
-      <dropbox-files />
+      <!--  {{
+      $store.state.markdown.path || "Create or open a file"
+      }}-->
+      <dropbox-files/>
     </v-toolbar>
 
     <v-content>
       <!-- <Home /> -->
-      <router-view />
+      <router-view/>
     </v-content>
+    <link :href="`${publicPath}styles/${$store.getters.activeStyle}.css`" rel="stylesheet">
   </v-app>
 </template>
 
@@ -29,7 +30,7 @@ export default {
   },
   data() {
     return {
-      //
+      publicPath: process.env.BASE_URL
     };
   }
 };
@@ -42,7 +43,7 @@ main {
   height: 100vh;
 }
 .renderer {
-  height: 70vh;
+  height: 80vh;
   overflow-y: scroll;
   @include box-shadow();
 }

@@ -69,8 +69,8 @@
 }
 
 $headerColor: #58180d;
-
-/deep/ .default .page {
+///deep/ 
+.default .page {
   margin-bottom: 8px;
   border-radius: 2px;
   @include box-shadow();
