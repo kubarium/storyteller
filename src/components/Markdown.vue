@@ -75,12 +75,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../styles/storyteller.scss";
 
-.source {
-  height: 70vh;
-  outline: 1px solid red;
+.CodeMirror {
+  height: 80vh;
   @include box-shadow();
 }
 </style>
