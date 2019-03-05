@@ -1,11 +1,11 @@
 <template>
   <v-toolbar dark dense>
     <v-toolbar-title>Markdown</v-toolbar-title>
-    <v-spacer/>
+    <v-spacer />
     <v-toolbar-items>
-      <content-operations type="layout"/>
-      <content-operations type="basic"/>
-      <content-operations type="table"/>
+      <content-operations type="layout" />
+      <content-operations type="basic" />
+      <content-operations type="table" />
     </v-toolbar-items>
   </v-toolbar>
 </template>

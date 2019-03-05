@@ -8,14 +8,17 @@
       <!--  {{
       $store.state.markdown.path || "Create or open a file"
       }}-->
-      <dropbox-files/>
+      <dropbox-files />
     </v-toolbar>
 
     <v-content>
       <!-- <Home /> -->
-      <router-view/>
+      <router-view />
     </v-content>
-    <link :href="`${publicPath}styles/${$store.getters.activeStyle}.css`" rel="stylesheet">
+    <link
+      :href="`${publicPath}styles/${$store.getters.activeStyle}.css`"
+      rel="stylesheet"
+    />
   </v-app>
 </template>
 
@@ -39,9 +42,6 @@ export default {
 <style lang="scss">
 @import "./styles/storyteller.scss";
 
-main {
-  height: 100vh;
-}
 .renderer {
   height: 80vh;
   overflow-y: scroll;
