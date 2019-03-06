@@ -2,21 +2,28 @@
 @import "../layout.scss";
 @import "./font.scss";
 
+@page {
+  margin: 0;
+}
+
 $headerColor: #58180d;
-///deep/
+
 .default .page {
-  margin-bottom: 8px;
-  border-radius: 2px;
-  @include box-shadow();
+  @media screen {
+    @include box-shadow();
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+  -webkit-print-color-adjust: exact;
 
   column-count: 2;
   column-fill: auto;
-  
+
   counter-increment: page-numbers;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
-  
+
   background-color: #eee5ce;
   background-image: url("../assets/zibar.jpg");
   background-position: top left;
@@ -37,22 +44,15 @@ $headerColor: #58180d;
   }
 
   @import "./header.scss";
-  
 
   & h1 + p::first-letter {
     font-size: 10em;
     float: left;
     font-family: Solberry;
     color: #222;
-    line-height: 0.8em;
+    line-height: 1em;
   }
 
-  
-
-  & strong {
-    font-weight: bold;
-    letter-spacing: 0.03em;
-  }
   & pre,
   & code {
     visibility: hidden;

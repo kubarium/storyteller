@@ -2,7 +2,6 @@
   <v-container class="renderer" @scroll.passive="updatePreviewPagination">
     <div
       :class="[
-        $store.state.preview.dimension,
         $store.getters.activeStyle,
         $store.getters.activeSize
       ]"

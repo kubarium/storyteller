@@ -8,18 +8,15 @@
       <!--  {{
       $store.state.markdown.path || "Create or open a file"
       }}-->
-      <dropbox-files />
+      <dropbox-files/>
     </v-toolbar>
 
     <v-content>
       <!-- <Home /> -->
-      <router-view />
+      <router-view/>
     </v-content>
-    <link
-      :href="`${publicPath}styles/${$store.getters.activeStyle}.css`"
-      rel="stylesheet"
-    />
-    <iframe id="print" class="print" :srcdoc="$store.getters.pring"></iframe>
+    <link :href="`${publicPath}styles/${$store.getters.activeStyle}.css`" rel="stylesheet">
+    <iframe id="print" class="print" :srcdoc="$store.getters.print"></iframe>
   </v-app>
 </template>
 
@@ -49,8 +46,8 @@ export default {
   @include box-shadow();
 }
 .print {
-  width: 0;
-  height: 0;
+  width: 0px;
+  height: 0px;
   position: fixed;
   right: 0;
   bottom: 0;

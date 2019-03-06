@@ -78,10 +78,11 @@
   font-weight: normal;
   font-style: normal;
 }
+@page {
+  margin: 0;
+}
 .default .page {
-  margin-bottom: 8px;
-  border-radius: 2px;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  -webkit-print-color-adjust: exact;
   column-count: 2;
   column-fill: auto;
   counter-increment: page-numbers;
@@ -96,6 +97,13 @@
   text-rendering: optimizeLegibility;
   page-break-before: always;
   page-break-after: always;
+}
+@media screen {
+  .default .page {
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
 }
 .default .page .cover {
   display: flex;
@@ -112,6 +120,7 @@
   font-weight: 800;
   color: #58180d;
   line-height: initial;
+  clear: both;
 }
 .default .page h1 {
   font-size: 0.987cm;
@@ -140,11 +149,7 @@
   float: left;
   font-family: Solberry;
   color: #222;
-  line-height: 0.8em;
-}
-.default .page strong {
-  font-weight: bold;
-  letter-spacing: 0.03em;
+  line-height: 1em;
 }
 .default .page pre, .default .page code {
   visibility: hidden;
