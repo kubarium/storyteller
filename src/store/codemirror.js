@@ -6,8 +6,7 @@ export default {
         cursorPosition: {
             line: 0,
             ch: 0
-        },
-        //operations: { ...operations }
+        }
     },
     getters : {
         operations: () => type => {
@@ -51,7 +50,10 @@ export default {
 
             state
                 .codemirror
-                .scrollIntoView(pages.pos.from, 300)
+                .scrollIntoView({
+                    from: pages.pos.from,
+                    to: pages.pos.to
+                }, 300)
 
         }
     },

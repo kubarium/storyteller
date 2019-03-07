@@ -5,7 +5,7 @@
         <span>Storyteller</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <dropbox-files/>
+      {{$store.state.markdown.path}}
     </v-toolbar>
 
     <v-content>
@@ -19,13 +19,8 @@
 </template>
 
 <script>
-import DropboxFiles from "./components/DropboxFiles";
-
 export default {
   name: "App",
-  components: {
-    DropboxFiles
-  },
   data() {
     return {
       publicPath: process.env.BASE_URL

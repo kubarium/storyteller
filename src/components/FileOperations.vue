@@ -5,15 +5,13 @@
     </v-btn>
 
     <v-list dense>
-      <v-list-tile @click="$store.dispatch('saveMarkdown')" :disabled="isMarkdownOpen || !modified">
+      <v-list-tile @click="$store.commit('toggleDropbox', true)">
         <v-list-tile-content>
-          <dropbox-files/>
-
-          <!-- <v-list-tile-title>Open</v-list-tile-title> -->
+          <v-list-tile-title>Open</v-list-tile-title>
         </v-list-tile-content>
-        <!-- <v-list-tile-avatar>
+        <v-list-tile-avatar>
           <v-icon>cloud</v-icon>
-        </v-list-tile-avatar>-->
+        </v-list-tile-avatar>
       </v-list-tile>
       <v-list-tile @click="$store.dispatch('saveMarkdown')" :disabled="isMarkdownOpen || !modified">
         <v-list-tile-content>
@@ -44,12 +42,8 @@
 </template>
 
 <script>
-import DropboxFiles from "@/components/DropboxFiles";
 export default {
   name: "file-operations",
-  components: {
-    DropboxFiles
-  },
   computed: {
     isMarkdownOpen() {
       return this.$store.state.markdown.path.length === 0;

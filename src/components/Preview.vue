@@ -8,8 +8,6 @@
       v-html="$store.state.markdown.preview"
     />
   </v-container>
-  <!-- <div>
-  </div>-->
 </template>
 
 <script>

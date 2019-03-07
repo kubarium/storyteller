@@ -5,8 +5,7 @@
     scrollable
     @input="$store.dispatch('refreshEntries')"
   >
-    <v-btn slot="activator" flat>Dropbox Files</v-btn>
-
+    <!-- <v-btn slot="activator" flat>Dropbox</v-btn> -->
     <v-card>
       <v-card-title>Your Dropbox Files
         <v-spacer/>
