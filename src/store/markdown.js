@@ -18,9 +18,11 @@ export default {
 
       let markdown = md({ html: true, linkify: true }).render(value);
 
+      let autoPageNumber = `<div class='pageNumber auto'></div>`;
+
       state.preview = markdown
         .split("~page")
-        .map(page => `<div class="page">${page}</div>`)
+        .map(page => `<div class="page">${page}${autoPageNumber}</div>`)
         .join("");
     },
     resetApplication(state) {

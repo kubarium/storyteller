@@ -5,16 +5,20 @@
         <span>Storyteller</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      {{$store.state.markdown.path}}
+      {{ $store.state.markdown.path }}
     </v-toolbar>
 
     <v-content>
-      <router-view/>
+      <router-view />
     </v-content>
     <link
-      :href="`${publicPath}styles/${$store.getters.activeStyle}/${$store.getters.activeStyle}.css?v=${$store.state.preview.styleVersion}`"
+      :href="
+        `${publicPath}styles/${$store.getters.activeStyle}/${
+          $store.getters.activeStyle
+        }.css?v=${$store.state.preview.styleVersion}`
+      "
       rel="stylesheet"
-    >
+    />
   </v-app>
 </template>
 
