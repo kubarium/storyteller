@@ -1,20 +1,25 @@
-@import "../storyteller.scss";
+@import "../background-image.scss";
 @import "../layout.scss";
-@import "./font.scss";
+@import "../fonts/BookSanity";
+@import "../fonts/Coldiac";
+@import "../fonts/ScalySans";
+@import "../fonts/Lora";
+@import "../printer-settings.scss";
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i");
 
 @page {
   margin: 0;
 }
+@include background-image("metal", "metal");
 
-$headerColor: #58180d;
-
-.default .page {
+.pages .page {
   @media screen {
-    @include box-shadow();
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
     border-radius: 2px;
     margin-bottom: 8px;
   }
-  -webkit-print-color-adjust: exact;
 
   column-count: 2;
   column-fill: auto;
@@ -25,9 +30,8 @@ $headerColor: #58180d;
   overflow: hidden;
 
   background-color: #eee5ce;
-  background-image: url("../assets/zibar.jpg");
-  background-position: top left;
-  font-family: BookSanity;
+  background-position: center;
+  font-family: "Playfair Display", serif;
   font-size: 0.317cm;
   text-rendering: optimizeLegibility;
   page-break-before: always;
@@ -46,11 +50,17 @@ $headerColor: #58180d;
   @import "./header.scss";
 
   & h1 + p::first-letter {
-    font-size: 10em;
+    font-size: 9em;
     float: left;
-    font-family: Solberry;
+    font-family: Lora;
     color: #222;
-    line-height: 1em;
+    line-height: 0.8em;
+    margin-right: 0.15em;
+  }
+
+  & hr {
+    visibility: hidden;
+    margin: 0;
   }
 
   & pre,
@@ -139,7 +149,7 @@ $headerColor: #58180d;
     border-image-outset: 25px 17px;
     border-image-repeat: stretch;
     border-image-slice: 150 200 150 200;
-    border-image-source: url(../assets/table.png);
+    border-image-source: url(/assets/table.png);
     border-image-width: 47px;
   }
 
@@ -156,7 +166,7 @@ $headerColor: #58180d;
     background-color: #e0e5c1;
     border-style: solid;
     border-width: 11px;
-    border-image: url("../assets/blockquote.png") 11;
+    border-image: url("/assets/blockquote.png") 11;
     border-image-outset: 9px 0;
     box-shadow: 1px 4px 14px #888;
   }
@@ -195,10 +205,9 @@ $headerColor: #58180d;
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: 100;
     height: 50px;
     width: 100%;
-    background-image: url("../assets/footer.png");
+    background-image: url("/assets/footer.png");
     background-size: cover;
   }
 }

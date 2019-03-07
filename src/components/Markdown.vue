@@ -54,6 +54,7 @@ export default {
         lineNumbers: true,
         lineWrapping: true,
         line: true,
+        theme: "monokai",
         extraKeys: {
           "Cmd-B": this.makeBold,
           "Ctrl-B": this.makeBold,

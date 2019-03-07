@@ -5,23 +5,20 @@
         <span>Storyteller</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <!--  {{
-      $store.state.markdown.path || "Create or open a file"
-      }}-->
       <dropbox-files/>
     </v-toolbar>
 
     <v-content>
-      <!-- <Home /> -->
       <router-view/>
     </v-content>
-    <link :href="`${publicPath}styles/${$store.getters.activeStyle}.css`" rel="stylesheet">
-    <iframe id="print" class="print" :srcdoc="$store.getters.print"></iframe>
+    <link
+      :href="`${publicPath}styles/${$store.getters.activeStyle}/${$store.getters.activeStyle}.css?v=${$store.state.preview.styleVersion}`"
+      rel="stylesheet"
+    >
   </v-app>
 </template>
 
 <script>
-//import Home from "./views/Home";
 import DropboxFiles from "./components/DropboxFiles";
 
 export default {
@@ -44,13 +41,5 @@ export default {
   height: 80vh;
   overflow-y: scroll;
   @include box-shadow();
-}
-.print {
-  width: 0px;
-  height: 0px;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  border: 0;
 }
 </style>

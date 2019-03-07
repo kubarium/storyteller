@@ -6,17 +6,15 @@
     </v-btn>
 
     <v-list dense>
-      <v-list dense>
-        <v-list-tile
-          v-for="item in $store.getters.operations(type)"
-          :key="item"
-          @click="applyOperation(item)"
-        >
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
+      <v-list-tile
+        v-for="item in $store.getters.operations(type)"
+        :key="item"
+        @click="applyOperation(item)"
+      >
+        <v-list-tile-content>
+          <v-list-tile-title>{{ item }}</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
     </v-list>
   </v-menu>
 </template>

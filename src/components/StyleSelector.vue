@@ -5,29 +5,30 @@
     </v-btn>
 
     <v-list dense>
-      <v-list dense>
-        <v-list-tile
-          v-for="style in $store.state.preview.styles"
-          :key="style.name"
-          @click="applyStyle(style.name)"
-        >
-          <v-list-tile-content>
-            <v-list-tile-title>{{ style.name }}</v-list-tile-title>
-          </v-list-tile-content>
-          <v-list-tile-avatar v-if="style.active">
-            <v-icon>done</v-icon>
-          </v-list-tile-avatar>
-        </v-list-tile>
-      </v-list>
+      <v-list-tile @click="applyStyle($store.getters.activeStyle)">
+        <v-list-tile-content>
+          <v-list-tile-title>Refresh Style</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+      <v-list-tile
+        v-for="style in $store.state.preview.styles"
+        :key="style.name"
+        @click="applyStyle(style.name)"
+      >
+        <v-list-tile-content>
+          <v-list-tile-title>{{ style.name }}</v-list-tile-title>
+        </v-list-tile-content>
+        <v-list-tile-avatar v-if="style.active">
+          <v-icon>done</v-icon>
+        </v-list-tile-avatar>
+      </v-list-tile>
     </v-list>
   </v-menu>
 </template>
 
 <script>
-//
 export default {
   name: "style-selector",
-  props: ["type"],
   methods: {
     applyStyle(style) {
       this.$store.dispatch("applyStyle", style);

@@ -1,8 +1,8 @@
 <template>
   <v-container class="renderer" @scroll.passive="updatePreviewPagination">
     <div
+      class="pages"
       :class="[
-        $store.getters.activeStyle,
         $store.getters.activeSize
       ]"
       v-html="$store.state.markdown.preview"
