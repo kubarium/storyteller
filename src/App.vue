@@ -5,7 +5,19 @@
         <span>Storyteller</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      {{ $store.state.markdown.path }}
+      <transition name="fade">
+        <v-chip
+          color="teal"
+          text-color="white"
+          v-if="$store.state.markdown.saving"
+        >
+          Saved
+          <v-icon right>check_circle</v-icon>
+        </v-chip>
+      </transition>
+      <v-chip label v-show="$store.state.markdown.path">
+        {{ $store.state.markdown.path }}
+      </v-chip>
     </v-toolbar>
 
     <v-content>
@@ -40,5 +52,12 @@ export default {
   height: 80vh;
   overflow-y: scroll;
   @include box-shadow();
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

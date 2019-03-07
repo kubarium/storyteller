@@ -66,7 +66,10 @@ export default {
           },
           autorename: true
         })
-        .then(metadata => console.log(metadata))
+        .then(metadata => {
+          state.saving = false;
+          console.log(metadata);
+        })
         .catch(console.error);
     }
   }
