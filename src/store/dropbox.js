@@ -63,8 +63,8 @@ export default {
           .then(() => commit("resetApplication"));
       }
     },
-    getEntries({ state, rootState, commit, dispatch }, path) {
-      rootState.markdown.path = path;
+    getEntries({ state, commit, dispatch }, path) {
+      state.path = path;
 
       commit("crumble", path);
 
@@ -75,7 +75,7 @@ export default {
         .then(response => dispatch("fileTree", response.entries))
         .catch(error => console.error(error));
     },
-    fileTree({ state, rootState, getters }, entries) {
+    fileTree({ state, getters }, entries) {
       state.entries = entries.filter(entry => {
         if (getters.isFolder(entry)) {
           return true;
@@ -90,7 +90,7 @@ export default {
         state.entries.unshift({
           name: `Go up`,
           ".tag": "parent",
-          path_lower: rootState.markdown.path.replace(RegExp(/\/[\w ]*$/g), "")
+          path_lower: state.path.replace(RegExp(/\/[\w ]*$/g), "")
         });
       }
 
