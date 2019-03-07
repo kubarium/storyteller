@@ -7,22 +7,25 @@
   >
     <!-- <v-btn slot="activator" flat>Dropbox</v-btn> -->
     <v-card>
-      <v-card-title>Your Dropbox Files
-        <v-spacer/>
+      <v-card-title
+        >Your Dropbox Files
+        <v-spacer />
         <v-btn icon flat @click="$store.dispatch('refreshEntries')">
           <v-icon>refresh</v-icon>
         </v-btn>
       </v-card-title>
-      <v-divider/>
+      <v-divider />
       <v-breadcrumbs :items="$store.state.dropbox.breadcrumbs">
         <template slot="item" slot-scope="props">
           <a @click="clickEntry(props.item)">{{ props.item.text }}</a>
         </template>
       </v-breadcrumbs>
-      <v-divider/>
+      <v-divider />
       <v-card-text style="height:300px">
         <v-list>
           <template v-for="(entry, index) in $store.state.dropbox.entries">
+            <v-divider v-show="index > 0" :key="index"></v-divider>
+
             <v-list-tile
               :disabled="$store.state.dropbox.fetching"
               :key="entry.title"
@@ -30,7 +33,9 @@
             >
               <v-list-tile-avatar>
                 <v-icon v-if="entry['.tag'] === 'folder'">folder</v-icon>
-                <v-icon v-else-if="entry['.tag'] === 'parent'">arrow_upward</v-icon>
+                <v-icon v-else-if="entry['.tag'] === 'parent'"
+                  >arrow_upward</v-icon
+                >
                 <v-icon v-else>edit</v-icon>
               </v-list-tile-avatar>
 
@@ -38,7 +43,7 @@
                 <v-list-tile-title v-html="entry.name"></v-list-tile-title>
               </v-list-tile-content>
 
-              <v-list-tile-action>
+              <v-list-tile-action v-if="entry['.tag'] === 'file'">
                 <v-btn
                   :disabled="$store.state.dropbox.fetching"
                   icon
@@ -46,12 +51,10 @@
                     $store.dispatch('deleteFromDropbox', entry.path_lower)
                   "
                 >
-                  <v-icon v-if="entry['.tag'] === 'file'">delete_forever</v-icon>
+                  <v-icon>delete_forever</v-icon>
                 </v-btn>
               </v-list-tile-action>
             </v-list-tile>
-
-            <v-divider v-show="index < $store.state.dropbox.entries.length - 1" :key="index"></v-divider>
           </template>
         </v-list>
       </v-card-text>
@@ -60,7 +63,12 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" flat @click="$store.commit('toggleDropbox', false)">Close</v-btn>
+        <v-btn
+          color="primary"
+          flat
+          @click="$store.commit('toggleDropbox', false)"
+          >Close</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>

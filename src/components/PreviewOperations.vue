@@ -1,16 +1,16 @@
 <template>
   <v-toolbar dark dense>
     <v-toolbar-title>Preview</v-toolbar-title>
-    <v-spacer/>
+    <v-spacer />
 
     <v-toolbar-items>
-      <style-selector/>
-      <v-divider vertical></v-divider>
-      <paper-size-selector/>
-      <v-divider vertical></v-divider>
-      <print-operations/>
-      <v-divider vertical></v-divider>
-      <file-operations/>
+      <style-selector />
+      <v-divider vertical />
+      <paper-size-selector />
+      <v-divider vertical />
+      <print-operations />
+      <v-divider vertical />
+      <file-operations />
 
       <!-- <v-divider vertical></v-divider> -->
       <!-- <v-btn @click="$store.dispatch('newMarkdown')" flat>
