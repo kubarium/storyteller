@@ -98,3 +98,7 @@ export const addCompactTables = `
 |  10 | Thunder     |
 </div>
 `
+
+export const addImage = (path) => `
+<img src="${path}" style="position:absolute; width: 50%; top: 50%; left: 50%"/>
+`

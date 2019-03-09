@@ -26,7 +26,10 @@ window.addEventListener("keydown", event => {
         break;
       case "o":
         event.preventDefault();
-        store.commit("toggleDropbox", true);
+        store.commit("toggleDropbox", {
+          toggle: true,
+          mode: 'markdown'
+        });
         break;
       case "F12":
         event.preventDefault();

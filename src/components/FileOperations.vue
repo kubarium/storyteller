@@ -1,13 +1,11 @@
 <template>
   <v-menu open-on-hover offset-y>
-    <v-btn slot="activator" flat
-      >File
+    <v-btn slot="activator" flat>File
       <v-icon>arrow_drop_down</v-icon>
     </v-btn>
 
     <v-list dense>
-      <v-list-tile @click="$store.commit('toggleDropbox', true)">
-        <dropbox-files />
+      <v-list-tile @click="$store.commit('toggleDropbox', {toggle:true,mode:'markdown'})">
         <v-list-tile-content>
           <v-list-tile-title>Open</v-list-tile-title>
         </v-list-tile-content>
@@ -15,10 +13,7 @@
           <v-icon>cloud</v-icon>
         </v-list-tile-avatar>
       </v-list-tile>
-      <v-list-tile
-        @click="$store.dispatch('saveMarkdown')"
-        :disabled="isMarkdownOpen || !modified"
-      >
+      <v-list-tile @click="$store.dispatch('saveMarkdown')" :disabled="isMarkdownOpen || !modified">
         <v-list-tile-content>
           <v-list-tile-title>Save</v-list-tile-title>
         </v-list-tile-content>
@@ -26,10 +21,7 @@
           <v-icon>save</v-icon>
         </v-list-tile-avatar>
       </v-list-tile>
-      <v-list-tile
-        @click="$store.dispatch('deleteFromDropbox')"
-        :disabled="isMarkdownOpen"
-      >
+      <v-list-tile @click="$store.dispatch('deleteFromDropbox')" :disabled="isMarkdownOpen">
         <v-list-tile-content>
           <v-list-tile-title>Delete</v-list-tile-title>
         </v-list-tile-content>
@@ -37,10 +29,7 @@
           <v-icon>delete_forever</v-icon>
         </v-list-tile-avatar>
       </v-list-tile>
-      <v-list-tile
-        @click="$store.dispatch('revertMarkdown')"
-        :disabled="isMarkdownOpen"
-      >
+      <v-list-tile @click="$store.dispatch('revertMarkdown')" :disabled="isMarkdownOpen">
         <v-list-tile-content>
           <v-list-tile-title>Revert</v-list-tile-title>
         </v-list-tile-content>
@@ -53,12 +42,8 @@
 </template>
 
 <script>
-import DropboxFiles from "@/components/DropboxFiles";
 export default {
   name: "file-operations",
-  components: {
-    DropboxFiles
-  },
   computed: {
     isMarkdownOpen() {
       return this.$store.state.markdown.path.length === 0;

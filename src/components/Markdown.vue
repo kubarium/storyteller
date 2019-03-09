@@ -52,7 +52,7 @@ export default {
         tabSize: 4,
         mode: { name: "text/x-markdown" },
         lineNumbers: true,
-        lineWrapping: true,
+        lineWrapping: this.$store.state.codemirror.lineWrapping,
         line: true,
         theme: "monokai",
         extraKeys: {

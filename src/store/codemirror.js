@@ -6,7 +6,8 @@ export default {
         cursorPosition: {
             line: 0,
             ch: 0
-        }
+        },
+        lineWrapping: false
     },
     getters : {
         operations: () => type => {
@@ -32,6 +33,12 @@ export default {
         }
     },
     mutations : {
+        toggleLineWrapping(state) {
+            state.lineWrapping = !state.lineWrapping;
+            state
+                .codemirror
+                .setOption('lineWrapping', state.lineWrapping);
+        },
         registerCodeMirror(state, codemirror) {
             state.codemirror = codemirror;
         },
@@ -58,10 +65,37 @@ export default {
         }
     },
     actions : {
+        addImage({
+            state,
+            rootState,
+            commit
+        }, path) {
+            rootState
+                .dropbox
+                .dbx
+                .filesGetTemporaryLink({path})
+                .then(file => {
+                    state
+                        .codemirror
+                        .getDoc()
+                        .replaceRange(`${operations["addImage"](file.link)}`, state.codemirror.getCursor())
+                    commit("toggleDropbox", {toggle: false});
 
+                })
+
+        },
         applyOperation({
-            state
+            state,
+            commit
         }, operation) {
+            if (operation === "addImage") {
+                commit("toggleDropbox", {
+                    toggle: true,
+                    mode: 'image'
+                });
+                return
+            }
+
             state
                 .codemirror
                 .getDoc()

@@ -1,13 +1,13 @@
 import md from "markdown-it";
 export default {
-  state: {
+  state : {
     path: "",
     content: "",
     modified: false,
     saving: false,
     preview: ""
   },
-  mutations: {
+  mutations : {
     changePreviewStyle(state, style) {
       state.style = style;
       state.styleSheet = `${style}.css`;
@@ -16,7 +16,7 @@ export default {
       state.content = value;
       state.modified = true;
 
-      let markdown = md({ html: true, linkify: true }).render(value);
+      let markdown = md({html: true, linkify: true}).render(value);
 
       let autoPageNumber = `<div class='pageNumber auto'></div>`;
 
@@ -32,32 +32,40 @@ export default {
       state.saving = false;
     }
   },
-  actions: {
-    openMarkdown({ state, rootState, commit }, path) {
+  actions : {
+    openMarkdown({
+      state,
+      rootState,
+      commit
+    }, path) {
       if (path) {
         state.path = path;
       }
-      rootState.dropbox.dbx
-        .filesDownload({ path: state.path })
+      rootState
+        .dropbox
+        .dbx
+        .filesDownload({path: state.path})
         .then(response => {
           var reader = new FileReader();
           reader.addEventListener("loadend", () => {
             commit("updateMarkdown", reader.result);
-            commit("toggleDropbox", false);
+            commit("toggleDropbox", {toggle: false});
           });
           reader.readAsText(response.fileBlob);
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.error(error);
         });
     },
-    revertMarkdown({ dispatch }) {
+    revertMarkdown({dispatch}) {
       dispatch("openMarkdown");
     },
-    saveMarkdown({ state, rootState }) {
+    saveMarkdown({state, rootState}) {
       state.saving = true;
       state.modified = false;
-      rootState.dropbox.dbx
+      rootState
+        .dropbox
+        .dbx
         .filesUpload({
           path: state.path,
           contents: state.content,
