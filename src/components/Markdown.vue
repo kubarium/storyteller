@@ -4,8 +4,7 @@
     class="source"
     :options="cmOptions"
     :value="$store.state.markdown.content"
-    @input="updateMarkdown"
-    @cursorActivity="updateCursor"
+    @input="updatePreview"
   />
 </template>
 
@@ -27,10 +26,10 @@ export default {
   },
   methods: {
     updateCursor() {
-      this.$store.commit("updateCursor", this.codemirror.getCursor());
+      //this.$store.commit("updateCursor", this.codemirror.getCursor());
     },
-    updateMarkdown(value) {
-      this.$store.commit("updateMarkdown", value);
+    updatePreview(value) {
+      this.$store.dispatch("updatePreview");
     },
     makeBold() {
       this.codemirror.replaceSelection(
@@ -45,14 +44,21 @@ export default {
       );
     }
   },
-  data() {
-    return {
-      cmOptions: {
-        // codemirror options
+  mounted() {
+    window.codemirror = this.codemirror;
+    //this.$store.commit("registerCodeMirror", this.codemirror);
+    this.$store.dispatch("updatePreview");
+  },
+  computed: {
+    codemirror() {
+      return this.$refs.cm.codemirror;
+    },
+    cmOptions() {
+      return {
         tabSize: 4,
         mode: { name: "text/x-markdown" },
         lineNumbers: true,
-        lineWrapping: this.$store.state.codemirror.lineWrapping,
+        lineWrapping: false,
         line: true,
         theme: "monokai",
         extraKeys: {
@@ -60,17 +66,11 @@ export default {
           "Ctrl-B": this.makeBold,
           "Cmd-I": this.makeItalic,
           "Ctrl-I": this.makeItalic
-        }
-      }
-    };
-  },
-  mounted() {
-    this.$store.commit("updateMarkdown", "");
-    this.$store.commit("registerCodeMirror", this.codemirror);
-  },
-  computed: {
-    codemirror() {
-      return this.$refs.cm.codemirror;
+        },
+        styleActiveLine: true
+
+        //readOnly: this.$store.state.markdown.path == ""
+      };
     }
   }
 };

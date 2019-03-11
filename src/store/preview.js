@@ -1,5 +1,7 @@
+import md from "markdown-it";
 export default {
   state : {
+    content: "",
     styles: [
       {
         name: "5E",
@@ -50,6 +52,20 @@ export default {
   },
   mutations : {},
   actions : {
+    updatePreview({state, rootState}) {
+      console.log(window.codemirror.getValue())
+      rootState.markdown.modified = true;
+
+      let markdown = md({html: true, linkify: true}).render(window.codemirror.getValue());
+      console.log(markdown)
+
+      let autoPageNumber = `<div class='pageNumber auto'></div>`;
+
+      state.content = markdown
+        .split("~page")
+        .map(page => `<div class="page">${page}${autoPageNumber}</div>`)
+        .join("");
+    },
     applyStyle({
       state
     }, newStyle) {

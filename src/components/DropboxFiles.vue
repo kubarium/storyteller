@@ -26,13 +26,17 @@
           <v-icon>refresh</v-icon>
         </v-btn>
       </v-card-title>
+
       <v-divider/>
+
       <v-breadcrumbs :items="$store.state.dropbox.breadcrumbs">
         <template slot="item" slot-scope="props">
           <a @click="clickEntry(props.item)">{{ props.item.text }}</a>
         </template>
       </v-breadcrumbs>
+
       <v-divider/>
+
       <v-card-text style="height:300px">
         <v-list>
           <template v-for="(entry, index) in entries">

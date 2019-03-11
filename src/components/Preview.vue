@@ -5,7 +5,7 @@
       :class="[
         $store.getters.activeSize
       ]"
-      v-html="$store.state.markdown.preview"
+      v-html="$store.state.preview.content"
     />
   </v-container>
 </template>

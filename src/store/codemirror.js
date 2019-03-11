@@ -40,11 +40,17 @@ export default {
                 .setOption('lineWrapping', state.lineWrapping);
         },
         registerCodeMirror(state, codemirror) {
+            window.codemirror = codemirror
             state.codemirror = codemirror;
         },
         updateCursor(state, cursorPosition) {
             state.cursorPosition = cursorPosition;
         },
+        /* updateMarkdown(state, value) {
+            window.codemirror = state.codemirror
+            //console.log(state.codemirror); state.content = value;
+
+        }, */
         updatePreviewPagination(state, pagination) {
             state.pagination = pagination
 

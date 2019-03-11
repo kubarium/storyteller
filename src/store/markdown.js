@@ -12,19 +12,6 @@ export default {
       state.style = style;
       state.styleSheet = `${style}.css`;
     },
-    updateMarkdown(state, value) {
-      state.content = value;
-      state.modified = true;
-
-      let markdown = md({html: true, linkify: true}).render(value);
-
-      let autoPageNumber = `<div class='pageNumber auto'></div>`;
-
-      state.preview = markdown
-        .split("~page")
-        .map(page => `<div class="page">${page}${autoPageNumber}</div>`)
-        .join("");
-    },
     resetApplication(state) {
       state.path = "";
       state.content = "";
@@ -36,7 +23,8 @@ export default {
     openMarkdown({
       state,
       rootState,
-      commit
+      commit,
+      dispatch
     }, path) {
       if (path) {
         state.path = path;
@@ -48,7 +36,10 @@ export default {
         .then(response => {
           var reader = new FileReader();
           reader.addEventListener("loadend", () => {
-            commit("updateMarkdown", reader.result);
+            rootState
+              .codemirror
+              .setValue(reader.result);
+            dispatch("updatePreview");
             commit("toggleDropbox", {toggle: false});
           });
           reader.readAsText(response.fileBlob);
