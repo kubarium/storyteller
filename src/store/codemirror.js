@@ -2,11 +2,6 @@ import * as operations from "./operations";
 
 export default {
     state : {
-        codemirror: null,
-        cursorPosition: {
-            line: 0,
-            ch: 0
-        },
         lineWrapping: false
     },
     getters : {
@@ -35,33 +30,23 @@ export default {
     mutations : {
         toggleLineWrapping(state) {
             state.lineWrapping = !state.lineWrapping;
-            state
+            window
                 .codemirror
                 .setOption('lineWrapping', state.lineWrapping);
         },
         registerCodeMirror(state, codemirror) {
             window.codemirror = codemirror
-            state.codemirror = codemirror;
         },
-        updateCursor(state, cursorPosition) {
-            state.cursorPosition = cursorPosition;
-        },
-        /* updateMarkdown(state, value) {
-            window.codemirror = state.codemirror
-            //console.log(state.codemirror); state.content = value;
-
-        }, */
         updatePreviewPagination(state, pagination) {
-            state.pagination = pagination
 
-            let pages = state
+            let pages = window
                 .codemirror
                 .getSearchCursor(/~page/gm);
             while (pagination--) {
                 pages.findNext()
             }
 
-            state
+            window
                 .codemirror
                 .scrollIntoView({
                     from: pages.pos.from,
@@ -72,7 +57,7 @@ export default {
     },
     actions : {
         addImage({
-            state,
+
             rootState,
             commit
         }, path) {
@@ -81,17 +66,17 @@ export default {
                 .dbx
                 .filesGetTemporaryLink({path})
                 .then(file => {
-                    state
+                    window
                         .codemirror
                         .getDoc()
-                        .replaceRange(`${operations["addImage"](file.link)}`, state.codemirror.getCursor())
+                        .replaceRange(`${operations["addImage"](file.link)}`, window.codemirror.getCursor())
                     commit("toggleDropbox", {toggle: false});
 
                 })
 
         },
         applyOperation({
-            state,
+
             commit
         }, operation) {
             if (operation === "addImage") {
@@ -100,18 +85,19 @@ export default {
                     mode: 'image'
                 });
                 return
-            }
+            } else {
 
-            state
-                .codemirror
-                .getDoc()
-                .replaceRange(`\n${operations[operation]}\n`, state.codemirror.getCursor());
-            state
-                .codemirror
-                .focus();
-            state
-                .codemirror
-                .scrollIntoView(state.cursorPosition);
+                window
+                    .codemirror
+                    .getDoc()
+                    .replaceRange(`\n${operations[operation]}\n`, window.codemirror.getCursor());
+                window
+                    .codemirror
+                    .focus();
+                window
+                    .codemirror
+                    .scrollIntoView(window.codemirror.getCursor());
+            }
         }
     }
 };

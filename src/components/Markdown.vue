@@ -4,7 +4,7 @@
     class="source"
     :options="cmOptions"
     :value="$store.state.markdown.content"
-    @input="updatePreview"
+    @changes="$store.dispatch('updatePreview')"
   />
 </template>
 
@@ -25,12 +25,6 @@ export default {
     codemirror
   },
   methods: {
-    updateCursor() {
-      //this.$store.commit("updateCursor", this.codemirror.getCursor());
-    },
-    updatePreview(value) {
-      this.$store.dispatch("updatePreview");
-    },
     makeBold() {
       this.codemirror.replaceSelection(
         "**" + this.codemirror.getSelection() + "**",
@@ -46,7 +40,6 @@ export default {
   },
   mounted() {
     window.codemirror = this.codemirror;
-    //this.$store.commit("registerCodeMirror", this.codemirror);
     this.$store.dispatch("updatePreview");
   },
   computed: {
@@ -58,7 +51,7 @@ export default {
         tabSize: 4,
         mode: { name: "text/x-markdown" },
         lineNumbers: true,
-        lineWrapping: false,
+        lineWrapping: this.$store.state.codemirror.lineWrapping,
         line: true,
         theme: "monokai",
         extraKeys: {

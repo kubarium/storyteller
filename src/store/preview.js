@@ -53,11 +53,9 @@ export default {
   mutations : {},
   actions : {
     updatePreview({state, rootState}) {
-      console.log(window.codemirror.getValue())
       rootState.markdown.modified = true;
 
       let markdown = md({html: true, linkify: true}).render(window.codemirror.getValue());
-      console.log(markdown)
 
       let autoPageNumber = `<div class='pageNumber auto'></div>`;
 

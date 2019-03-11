@@ -1,11 +1,9 @@
-import md from "markdown-it";
 export default {
   state : {
     path: "",
     content: "",
     modified: false,
-    saving: false,
-    preview: ""
+    saving: false
   },
   mutations : {
     changePreviewStyle(state, style) {
@@ -36,7 +34,7 @@ export default {
         .then(response => {
           var reader = new FileReader();
           reader.addEventListener("loadend", () => {
-            rootState
+            window
               .codemirror
               .setValue(reader.result);
             dispatch("updatePreview");
@@ -44,9 +42,7 @@ export default {
           });
           reader.readAsText(response.fileBlob);
         })
-        .catch(function (error) {
-          console.error(error);
-        });
+        .catch(console.error);
     },
     revertMarkdown({dispatch}) {
       dispatch("openMarkdown");
@@ -65,9 +61,8 @@ export default {
           },
           autorename: true
         })
-        .then(metadata => {
+        .then(() => {
           state.saving = false;
-          console.log(metadata);
         })
         .catch(console.error);
     }
