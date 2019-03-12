@@ -1,5 +1,5 @@
 <template>
-  <v-menu open-on-hover offset-y>
+  <v-menu open-on-hover offset-y :disabled="!$store.getters.isMarkdownOpen">
     <v-btn slot="activator" flat>Settings
       <v-icon>arrow_drop_down</v-icon>
     </v-btn>

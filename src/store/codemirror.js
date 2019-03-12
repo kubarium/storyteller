@@ -1,7 +1,9 @@
 import * as operations from "./operations";
+import {initialValue} from "./initialValue";
 
 export default {
     state : {
+        initialValue: initialValue,
         lineWrapping: false
     },
     getters : {

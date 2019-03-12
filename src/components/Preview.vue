@@ -1,5 +1,5 @@
 <template>
-  <v-container class="renderer" @scroll.passive="updatePreviewPagination">
+  <v-container class="renderer scrollY" @scroll.passive="updatePreviewPagination">
     <div
       class="pages"
       :class="[

@@ -50,15 +50,19 @@ export default {
 @import "./styles/storyteller.scss";
 
 .renderer {
-  height: 80vh;
-  overflow-y: scroll;
+  height: 82vh;
+  overflow-y: hidden;
   @include box-shadow();
+}
+.scrollY {
+  overflow-y: scroll;
 }
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

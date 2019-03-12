@@ -1,11 +1,13 @@
 <template>
-  <codemirror
-    ref="cm"
-    class="source"
-    :options="cmOptions"
-    :value="$store.state.markdown.content"
-    @changes="$store.dispatch('updatePreview')"
-  />
+  <v-container class="renderer pa-0">
+    <codemirror
+      ref="cm"
+      class="source"
+      :options="cmOptions"
+      :value="$store.state.codemirror.initialValue"
+      @changes="$store.dispatch('updatePreview')"
+    />
+  </v-container>
 </template>
 
 <script>
@@ -16,6 +18,11 @@ import "codemirror/theme/monokai.css";
 import "codemirror/addon/search/search";
 import "codemirror/addon/search/searchcursor";
 import "codemirror/addon/search/jump-to-line";
+import "codemirror/addon/selection/active-line";
+import "codemirror/addon/selection/mark-selection";
+import "codemirror/addon/scroll/scrollpastend";
+import "codemirror/addon/scroll/simplescrollbars.css";
+import "codemirror/addon/scroll/simplescrollbars";
 import "codemirror/addon/dialog/dialog.css";
 import "codemirror/addon/dialog/dialog.js";
 
@@ -38,6 +45,7 @@ export default {
       );
     }
   },
+  created() {},
   mounted() {
     window.codemirror = this.codemirror;
     this.$store.dispatch("updatePreview");
@@ -52,7 +60,9 @@ export default {
         mode: { name: "text/x-markdown" },
         lineNumbers: true,
         lineWrapping: this.$store.state.codemirror.lineWrapping,
-        line: true,
+        styleActiveLine: true,
+        styleActiveSelected: true,
+        scrollbarStyle: "simple",
         theme: "monokai",
         extraKeys: {
           "Cmd-B": this.makeBold,
@@ -60,9 +70,7 @@ export default {
           "Cmd-I": this.makeItalic,
           "Ctrl-I": this.makeItalic
         },
-        styleActiveLine: true
-
-        //readOnly: this.$store.state.markdown.path == ""
+        readOnly: this.$store.getters.isMarkdownOpen ? false : "nocursor"
       };
     }
   }
@@ -73,7 +81,8 @@ export default {
 @import "../styles/storyteller.scss";
 
 .CodeMirror {
-  height: 80vh;
+  height: 82vh;
+
   @include box-shadow();
 }
 </style>

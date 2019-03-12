@@ -39,7 +39,7 @@
 
       <v-card-text style="height:300px">
         <v-list>
-          <template v-for="(entry, index) in entries">
+          <template v-for="(entry, index) in $store.state.dropbox.entries">
             <v-divider v-show="index > 0" :key="index"></v-divider>
 
             <v-list-tile

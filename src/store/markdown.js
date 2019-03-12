@@ -1,18 +1,18 @@
 export default {
   state : {
     path: "",
-    content: "",
     modified: false,
     saving: false
   },
+  getters : {
+    isMarkdownOpen: (state) => state.path != ""
+  },
   mutations : {
-    changePreviewStyle(state, style) {
-      state.style = style;
-      state.styleSheet = `${style}.css`;
-    },
     resetApplication(state) {
+      window
+        .codemirror
+        .setValue("")
       state.path = "";
-      state.content = "";
       state.modified = false;
       state.saving = false;
     }
@@ -55,7 +55,9 @@ export default {
         .dbx
         .filesUpload({
           path: state.path,
-          contents: state.content,
+          contents: window
+            .codemirror
+            .getValue(),
           mode: {
             ".tag": "overwrite"
           },

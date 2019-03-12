@@ -107,19 +107,34 @@ export default {
       state
         .dbx
         .filesListFolder({path, include_media_info: true})
-        .then(response => dispatch("fileTree", response.entries))
+        .then(response => dispatch('filterEntries', response.entries))
+        .then(entries => dispatch("fileTree", entries))
         .catch(error => console.error(error));
 
     },
-    /* filterEntries({
+    filterEntries({
       state,
       commit
-    }, filter) {
-      commit("updateFilter", filter)
-      state.entries = state
-        .entries
-        .filter(entry => RegExp(state.filter, "g").test(entry.name))
-    }, */
+    }, entries) {
+      return new Promise((res) => {
+        if (state.sort === sort.DATE) {
+          res(entries.sort((a, b) => {
+            return new Date(a) < new Date(b)
+              ? 1
+              : new Date(a) > new Date(b)
+                ? -1
+                : 0;
+          }))
+        } else {
+          res(entries.sort((a, b) => a.name > b.name
+            ? 1
+            : a.name < b.name
+              ? -1
+              : 0))
+
+        }
+      })
+    },
     fileTree({
       state,
       getters
