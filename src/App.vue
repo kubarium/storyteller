@@ -1,22 +1,28 @@
 <template>
   <v-app>
-    <v-toolbar app dense>
+    <v-toolbar app dense @contextmenu.prevent="contextmenu">
       <v-toolbar-title class="headline text-uppercase">
         <span>Storyteller</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <transition name="fade">
-        <v-chip color="teal" text-color="white" v-if="$store.state.markdown.saving">Saved
+        <v-chip
+          color="teal"
+          text-color="white"
+          v-if="$store.state.markdown.saving"
+          >Saved
           <v-icon right>check_circle</v-icon>
         </v-chip>
       </transition>
-      <v-chip label v-show="$store.state.markdown.path">{{ $store.state.markdown.path }}</v-chip>
-      <dropbox-files/>
+      <v-chip label v-show="$store.state.markdown.path">{{
+        $store.state.markdown.path
+      }}</v-chip>
+      <dropbox-files />
       <!-- <image-selector/> -->
     </v-toolbar>
 
     <v-content>
-      <router-view/>
+      <router-view />
     </v-content>
     <link
       :href="
@@ -25,7 +31,7 @@
         }.css?v=${$store.state.preview.styleVersion}`
       "
       rel="stylesheet"
-    >
+    />
   </v-app>
 </template>
 
@@ -38,6 +44,15 @@ export default {
     return {
       publicPath: process.env.BASE_URL
     };
+  },
+  methods: {
+    contextmenu(event) {
+      
+      this.$store
+        .dispatch("getThesaurus", "misunderstanding")
+        .then(shit => console.log(shit));
+      console.log(event);
+    }
   },
   components: {
     DropboxFiles
