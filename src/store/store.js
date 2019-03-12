@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import codemirror from "./codemirror"
-import dropbox from "./dropbox"
-import markdown from "./markdown"
-import preview from './preview';
+import codemirror from "./codemirror";
+import dropbox from "./dropbox";
+import markdown from "./markdown";
+import preview from "./preview";
+import thesaurus from "./thesaurus";
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -12,7 +13,8 @@ const store = new Vuex.Store({
     codemirror,
     dropbox,
     markdown,
-    preview
+    preview,
+    thesaurus
   }
 });
 
