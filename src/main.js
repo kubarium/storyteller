@@ -3,6 +3,7 @@ import "./plugins/vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store/store";
+import events from "./events";
 
 Vue.config.productionTip = false;
 
@@ -11,37 +12,3 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#app");
-
-document.addEventListener("fullscreenchange", (event) => {
-  console.log(event)
-  store.commit("toggleFullscreen", document.fullscreen)
-
-});
-
-window.addEventListener("keydown", event => {
-  if (event.ctrlKey || event.metaKey) {
-    switch (event.key) {
-      case "p":
-        event.preventDefault();
-        store.dispatch("publishMarkdown", false);
-        break;
-      case "s":
-        event.preventDefault();
-        store.dispatch("saveMarkdown");
-        break;
-      case "o":
-        event.preventDefault();
-        store.commit("toggleDropbox", {
-          toggle: true,
-          mode: 'markdown'
-        });
-        break;
-      case "F12":
-        event.preventDefault();
-        store.dispatch("revertMarkdown");
-        break;
-      default:
-        break;
-    }
-  }
-});

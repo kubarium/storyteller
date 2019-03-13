@@ -43,11 +43,16 @@ export default {
         "*" + this.codemirror.getSelection() + "*",
         "around"
       );
+    },
+    contextmenu(cm, event) {
+      var pos = cm.coordsChar({ left: event.clientX, top: event.clientY });
+      var word = cm.getTokenAt(pos).string.replace(/[.,;!?]$/, "");
+      this.$store.dispatch("getThesaurus", word);
     }
   },
-  created() {},
   mounted() {
     window.codemirror = this.codemirror;
+    this.codemirror.on("contextmenu", this.contextmenu);
     this.$store.dispatch("updatePreview");
   },
   computed: {
