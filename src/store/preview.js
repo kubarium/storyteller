@@ -2,6 +2,7 @@ import md from "markdown-it";
 export default {
   state : {
     content: "",
+    fullscreen: false,
     styles: [
       {
         name: "5E",
@@ -50,7 +51,16 @@ export default {
       .find(size => size.active === true)
       .code
   },
-  mutations : {},
+  mutations : {
+    toggleFullscreen(state, toggle) {
+      state.fullscreen = toggle
+      state.fullscreen
+        ? document
+          .body
+          .requestFullscreen()
+        : document.exitFullscreen();
+    }
+  },
   actions : {
     updatePreview({state, rootState}) {
       rootState.markdown.modified = true;

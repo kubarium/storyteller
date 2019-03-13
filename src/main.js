@@ -12,9 +12,14 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
+document.addEventListener("fullscreenchange", (event) => {
+  console.log(event)
+  store.commit("toggleFullscreen", document.fullscreen)
+
+});
+
 window.addEventListener("keydown", event => {
   if (event.ctrlKey || event.metaKey) {
-    console.log(event);
     switch (event.key) {
       case "p":
         event.preventDefault();

@@ -1,16 +1,21 @@
 <template>
   <v-toolbar dark dense>
     <v-toolbar-title>Preview</v-toolbar-title>
-    <v-spacer />
+    <v-spacer/>
 
     <v-toolbar-items>
-      <style-selector />
-      <v-divider vertical />
-      <paper-size-selector />
-      <v-divider vertical />
-      <print-operations />
-      <v-divider vertical />
-      <file-operations />
+      <v-btn flat @click="fullscreen">
+        <v-icon v-if="$store.state.preview.fullscreen">fullscreen_exit</v-icon>
+        <v-icon v-else>fullscreen</v-icon>
+      </v-btn>
+      <v-divider vertical/>
+      <style-selector/>
+      <v-divider vertical/>
+      <paper-size-selector/>
+      <v-divider vertical/>
+      <print-operations/>
+      <v-divider vertical/>
+      <file-operations/>
 
       <!-- <v-divider vertical></v-divider> -->
       <!-- <v-btn @click="$store.dispatch('newMarkdown')" flat>
@@ -32,6 +37,11 @@ export default {
     PaperSizeSelector,
     PrintOperations,
     StyleSelector
+  },
+  methods: {
+    fullscreen() {
+      document.body.dispatchEvent(new Event("fullscreenchange"));
+    }
   }
 };
 </script>

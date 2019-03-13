@@ -79,7 +79,9 @@ export default {
 
 <style lang="scss">
 @import "../styles/storyteller.scss";
-
+:fullscreen .CodeMirror {
+  height: 95vh;
+}
 .CodeMirror {
   height: 82vh;
 
