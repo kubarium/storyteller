@@ -35,29 +35,43 @@ export default {
       commit
     }, word) {
       state.word = word;
-      return axios(`${state.urls.thesaurus[state.mode]}${word}?key=${state.api_key}`).then(response => {
+      axios(`${state.urls.thesaurus[state.mode]}${word}?key=${state.api_key}`).then(response => {
+        //window.entries = response.data;
+
         let entries = response
           .data
-          .filter(entry => entry.hwi.hw === word);
+          .filter(entry => entry.hwi && entry.hwi.hw === word);
 
-        let thesaurus = entries.map(entry => {
-          let fl = entry.fl;
-          let synonyms = entry
-            .meta
-            .syns
-            .flat();
-          let antonyms = entry
-            .meta
-            .ants
-            .flat();
-          let related = entry
-            .def[0]
-            .sseq[0]
-            .flat()[1]
-            .rel_list
+        let thesaurus = []
 
-          return {fl, synonyms, antonyms, related}
-        })
+        if (entries && entries.length) {
+
+          thesaurus = entries.map(entry => {
+            let fl = entry.fl;
+            let synonyms = entry.meta.syns
+
+            let antonyms = entry.meta.ants
+
+            let related = entry
+              .def[0]
+              .sseq
+              .map(sseq => sseq.flat())
+              .map(sseq => sseq[1])
+              .filter(sseq => sseq.rel_list)
+              .map(sseq => sseq.rel_list)
+              .map(rel => rel.map(rel => rel.flat().map(rel => rel.wd)));
+
+            let near = entry
+              .def[0]
+              .sseq
+              .map(sseq => sseq.flat())
+              .map(sseq => sseq[1])
+              .filter(sseq => sseq.near_list)
+              .map(sseq => sseq.near_list)
+              .map(near => near.map(near => near.flat().map(near => near.wd)));
+            return {fl, synonyms, antonyms, related, near}
+          })
+        }
 
         commit("updateThesaurus", thesaurus);
         commit("toggleThesaurus", true);

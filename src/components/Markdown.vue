@@ -46,12 +46,16 @@ export default {
     },
     contextmenu(cm, event) {
       event.preventDefault();
-      var pos = cm.coordsChar({ left: event.clientX, top: event.clientY });
-      var word = cm
-        .getTokenAt(pos)
-        .string.toLowerCase()
-        .replace(/[.,;!?]$/, "");
-      this.$store.dispatch("getThesaurus", word);
+      let pos = cm.coordsChar({ left: event.clientX, top: event.clientY });
+      let token = cm.getTokenAt(pos);
+      let word = token.string.toLowerCase().replace(/[.,;!?]$/, "");
+      if (word.length > 1) {
+        cm.setSelection(
+          { line: pos.line, ch: token.start },
+          { line: pos.line, ch: token.start + word.length }
+        );
+        this.$store.dispatch("getThesaurus", word);
+      }
     }
   },
   mounted() {

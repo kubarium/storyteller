@@ -4,7 +4,7 @@ import {initialValue} from "./initialValue";
 export default {
     state : {
         initialValue: initialValue,
-        lineWrapping: false
+        lineWrapping: true
     },
     getters : {
         operations: () => type => {

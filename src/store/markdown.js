@@ -44,10 +44,15 @@ export default {
         })
         .catch(console.error);
     },
-    revertMarkdown({dispatch}) {
+    revertMarkdown({state, dispatch}) {
+      if (state.path == "") 
+        return;
       dispatch("openMarkdown");
     },
     saveMarkdown({state, rootState}) {
+      if (state.path == "") 
+        return;
+      
       state.saving = true;
       state.modified = false;
       rootState

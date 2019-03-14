@@ -1,119 +1,182 @@
 <template>
-  <v-dialog v-model="$store.state.thesaurus.dialog" width="80%" scrollable>
-    <v-card>
-      <!-- <v-card-title>Thesaurus for {{$store.state.thesaurus.word}}</v-card-title> -->
-      <!-- <v-divider/> -->
-      <v-tabs color="cyan" dark slider-color="yellow">
-        <v-tab
-          v-for="(entry,index) in $store.state.thesaurus.entries"
-          :key="index"
-          ripple
-        >{{ entry.fl }}</v-tab>
-        <v-tab-item v-for="(entry,index) in $store.state.thesaurus.entries" :key="index">
-          <v-container class="pa-2" v-show="entry.synonyms.length">
-            <v-card>
-              <v-card-title class="title">Synonyms</v-card-title>
-              <v-divider/>
-              <v-item-group>
-                <v-item v-for="(synonym,index) in entry.synonyms" :key="`synonym-${index}`">
-                  <v-chip slot-scope="{ active, toggle }" text-color="teal" @click="toggle">
-                    {{synonym}}
-                    <v-icon right v-if="active">radio_button_checked</v-icon>
-                    <v-icon right v-else>radio_button_unchecked</v-icon>
-                  </v-chip>
-                </v-item>
-              </v-item-group>
-            </v-card>
-          </v-container>
-          <v-container class="pa-2" v-show="entry.antonyms.length">
-            <v-card>
-              <v-card-title class="title">Antonyms</v-card-title>
-              <v-divider/>
-              <v-item-group>
-                <v-item v-for="(antonym,index) in entry.antonyms" :key="`antonym-${index}`">
-                  <v-chip slot-scope="{ active, toggle }" text-color="teal" @click="toggle">
-                    {{antonym}}
-                    <v-icon right v-if="active">radio_button_checked</v-icon>
-                    <v-icon right v-else>radio_button_unchecked</v-icon>
-                  </v-chip>
-                </v-item>
-              </v-item-group>
-            </v-card>
-          </v-container>
-          <v-container class="pa-2" v-show="entry.related.length">
-            <v-card>
-              <v-card-title class="title">Related Words</v-card-title>
-              <v-divider/>
-              <v-item-group>
-                <v-item v-for="(related,index) in entry.related" :key="`related-${index}`">
-                  <v-chip slot-scope="{ active, toggle }" text-color="teal" @click="toggle">
-                    {{related}}
-                    <v-icon right v-if="active">radio_button_checked</v-icon>
-                    <v-icon right v-else>radio_button_unchecked</v-icon>
-                  </v-chip>
-                </v-item>
-              </v-item-group>
-            </v-card>
-          </v-container>
-          <!-- <v-card flat>
-            <v-card-title class="blue">Related Words</v-card-title>
-            <v-card-text v-for="(word,index) in entry.related" :key="`related-${index}`"></v-card-text>
-            <v-card-text>qqq</v-card-text>
-          </v-card>-->
-        </v-tab-item>
-      </v-tabs>
+  <v-dialog v-model="$store.state.thesaurus.dialog" width="80%" scrollable @input="reset">
+    <v-card v-if="$store.state.thesaurus.entries.length">
+      <v-card-text class="pa-0" style="height:500px">
+        <v-tabs color="cyan" dark slider-color="primary darken-2">
+          <v-tab
+            v-for="(entry,index) in $store.state.thesaurus.entries"
+            :key="index"
+            ripple
+          >{{ entry.fl }}</v-tab>
 
-      <!-- <v-divider/> -->
-      <!-- 
-      <v-card-text style="height:300px">
-        <v-list>
-          <template v-for="(entry, index) in $store.state.dropbox.entries">
-            <v-divider v-show="index > 0" :key="index"></v-divider>
+          <v-tab-item
+            class="pa-2"
+            v-for="(entry,index) in $store.state.thesaurus.entries"
+            :key="index"
+          >
+            <v-expansion-panel>
+              <v-expansion-panel-content v-if="entry.synonyms.length">
+                <template slot="header">
+                  <div>
+                    Synonyms of
+                    <strong>{{$store.state.thesaurus.word}}</strong>
+                  </div>
+                </template>
+                <v-card>
+                  <v-divider/>
+                  <v-item-group v-for="(synonym,index) in entry.synonyms" :key="`synonym-${index}`">
+                    <v-divider v-show="index !== 0"/>
+                    <v-chip
+                      disabled
+                      color="light-green darken-2"
+                      text-color="white"
+                      label
+                    >#{{index}}</v-chip>
+                    <v-chip
+                      label
+                      v-for="(word,index) in synonym"
+                      :key="`synonym-word-${index}`"
+                      color="light-green lighten-1"
+                      @click="selectThesaurus(word)"
+                    >{{word}}</v-chip>
+                  </v-item-group>
+                </v-card>
+              </v-expansion-panel-content>
 
-            <v-list-tile
-              :disabled="$store.state.dropbox.fetching"
-              :key="entry.title"
-              @click="clickEntry(entry)"
-            >
-              <v-list-tile-avatar>
-                <v-icon v-if="entry['.tag'] === 'folder'">folder</v-icon>
-                <v-icon v-else-if="entry['.tag'] === 'parent'">arrow_upward</v-icon>
-                <v-icon v-else>edit</v-icon>
-              </v-list-tile-avatar>
+              <v-expansion-panel-content v-if="entry.related.length">
+                <template slot="header">
+                  <div>
+                    Words Related to
+                    <strong>{{$store.state.thesaurus.word}}</strong>
+                  </div>
+                </template>
+                <v-card>
+                  <v-divider/>
+                  <v-item-group v-for="(related,index) in entry.related" :key="`related-${index}`">
+                    <v-divider v-show="index !== 0"/>
+                    <v-chip
+                      disabled
+                      color="light-green darken-2"
+                      text-color="white"
+                      label
+                    >#{{index}}</v-chip>
+                    <div
+                      v-for="(group,index) in related"
+                      :key="`related-group-${index}`"
+                      class="ma-1 pl-1 pr-1 chip-group light-green"
+                    >
+                      <v-chip
+                        label
+                        v-for="(item,index) in group"
+                        :key="`related-group-item-${index}`"
+                        color="light-green lighten-1"
+                        @click="selectThesaurus(item)"
+                      >{{item}}</v-chip>
+                    </div>
+                  </v-item-group>
+                </v-card>
+              </v-expansion-panel-content>
 
-              <v-list-tile-content>
-                <v-list-tile-title v-html="entry.name"></v-list-tile-title>
-              </v-list-tile-content>
+              <v-expansion-panel-content v-if="entry.antonyms.length">
+                <template slot="header">
+                  <div>
+                    Antonyms of
+                    <strong>{{$store.state.thesaurus.word}}</strong>
+                  </div>
+                </template>
+                <v-card>
+                  <v-divider/>
+                  <v-item-group v-for="(antonym,index) in entry.antonyms" :key="`antonym-${index}`">
+                    <v-divider v-show="index !== 0"/>
+                    <v-chip disabled color="red darken-2" text-color="white" label>#{{index}}</v-chip>
+                    <v-chip
+                      label
+                      v-for="(word,index) in antonym"
+                      :key="`antonym-word-${index}`"
+                      color="red lighten-1"
+                      text-color="white"
+                      @click="selectThesaurus(word)"
+                    >{{word}}</v-chip>
+                  </v-item-group>
+                </v-card>
+              </v-expansion-panel-content>
 
-              <v-list-tile-action v-if="entry['.tag'] === 'file'">
-                <v-btn
-                  :disabled="$store.state.dropbox.fetching"
-                  icon
-                  @click.stop="
-                    $store.dispatch('deleteFromDropbox', entry.path_lower)
-                  "
-                >
-                  <v-icon>delete_forever</v-icon>
-                </v-btn>
-              </v-list-tile-action>
-            </v-list-tile>
-          </template>
-        </v-list>
+              <v-expansion-panel-content v-if="entry.near.length">
+                <template slot="header">
+                  <div>
+                    Near Antonyms of
+                    <strong>{{$store.state.thesaurus.word}}</strong>
+                  </div>
+                </template>
+                <v-card>
+                  <v-divider/>
+                  <v-item-group v-for="(near,index) in entry.near" :key="`near-${index}`">
+                    <v-divider v-show="index !== 0"/>
+                    <v-chip disabled color="red darken-2" text-color="white" label>#{{index}}</v-chip>
+                    <div
+                      v-for="(group,index) in near"
+                      :key="`near-word-${index}`"
+                      class="ma-1 pl-1 pr-1 chip-group red darken-1"
+                    >
+                      <v-chip
+                        label
+                        v-for="(item,index) in group"
+                        :key="`near-group-item-${index}`"
+                        color="red lighten-1"
+                        text-color="white"
+                        @click="selectThesaurus(item)"
+                      >{{item}}</v-chip>
+                    </div>
+                  </v-item-group>
+                </v-card>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-tab-item>
+        </v-tabs>
       </v-card-text>
-      -->
+
       <v-divider/>
       <v-card-actions>
-        Thesaurus for
-        {{$store.state.thesaurus.word}}
+        <v-btn
+          v-show="selectedThesaurus"
+          color="primary"
+          @click="useThesaurus(selectedThesaurus)"
+        >Replace {{$store.state.thesaurus.word}} With {{selectedThesaurus}}</v-btn>
         <v-spacer/>
         <v-btn color="primary" flat @click="$store.commit('toggleThesaurus', false)">Close</v-btn>
       </v-card-actions>
+    </v-card>
+    <v-card v-else>
+      <v-card-title>No meaningful result for {{$store.state.thesaurus.word}}</v-card-title>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
 export default {
-  name: "thesaurus"
+  name: "thesaurus",
+  data() {
+    return {
+      selectedThesaurus: ""
+    };
+  },
+  methods: {
+    selectThesaurus(thesaurus) {
+      this.selectedThesaurus = thesaurus;
+    },
+    reset() {
+      this.selectedThesaurus = "";
+    },
+    useThesaurus(word) {
+      window.codemirror.replaceSelection(word);
+      this.$store.commit("toggleThesaurus", false);
+    }
+  }
 };
 </script>
+
+<style lang="scss" scoped>
+.chip-group {
+  display: inline-block;
+}
+</style>

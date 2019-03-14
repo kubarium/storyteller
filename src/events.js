@@ -1,9 +1,5 @@
-/* 
-document.addEventListener("fullscreenchange", event => {
-  console.log(event);
-  store.commit("toggleFullscreen", document.fullscreen)
-});
- */
+import store from "./store/store";
+
 window.addEventListener("keydown", event => {
   if (event.ctrlKey || event.metaKey) {
     switch (event.key) {
