@@ -16,6 +16,7 @@
         }}
       </v-chip>
       <dropbox-files/>
+      <thesaurus/>
       <!-- <image-selector/> -->
     </v-toolbar>
 
@@ -35,6 +36,7 @@
 
 <script>
 import DropboxFiles from "@/components/DropboxFiles";
+import Thesaurus from "@/components/Thesaurus";
 /* import ImageSelector from "@/components/ImageSelector"; */
 export default {
   name: "App",
@@ -52,7 +54,8 @@ export default {
     }
   },
   components: {
-    DropboxFiles
+    DropboxFiles,
+    Thesaurus
     /* ImageSelector */
   }
 };

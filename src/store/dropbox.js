@@ -69,7 +69,7 @@ export default {
   actions : {
     connectDropbox({state}) {
       return new Promise(resolve => {
-        state.dbx = new Dropbox.Dropbox({accessToken: process.env.VUE_APP_DROPBOX_ACCESS_TOKEN});
+        state.dbx = new Dropbox.Dropbox({accessToken: process.env.VUE_APP_DROPBOX_ACCESS_TOKEN, fetch});
         resolve();
       });
     },

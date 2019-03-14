@@ -45,8 +45,12 @@ export default {
       );
     },
     contextmenu(cm, event) {
+      event.preventDefault();
       var pos = cm.coordsChar({ left: event.clientX, top: event.clientY });
-      var word = cm.getTokenAt(pos).string.replace(/[.,;!?]$/, "");
+      var word = cm
+        .getTokenAt(pos)
+        .string.toLowerCase()
+        .replace(/[.,;!?]$/, "");
       this.$store.dispatch("getThesaurus", word);
     }
   },

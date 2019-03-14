@@ -77,7 +77,7 @@
 
       <v-card-actions>
         <v-text-field label="Filter" @click:clear="clearFilter($event)" clearable v-model="filter"/>
-        <v-spacer></v-spacer>
+        <v-spacer/>
         <v-btn color="primary" flat @click="$store.commit('toggleDropbox', {toggle:false})">Close</v-btn>
       </v-card-actions>
     </v-card>
