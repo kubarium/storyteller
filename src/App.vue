@@ -10,7 +10,7 @@
           <v-icon right>check_circle</v-icon>
         </v-chip>
         <v-chip color="red" text-color="white" v-if="$store.state.markdown.modified">Edited
-          <v-icon right>warning</v-icon>
+          <v-icon right>priority_high</v-icon>
         </v-chip>
       </transition>
       <v-chip label v-show="$store.state.markdown.path">
