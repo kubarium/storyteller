@@ -37,7 +37,8 @@ export default {
             window
               .codemirror
               .setValue(reader.result);
-            dispatch("updatePreview");
+            dispatch("updatePreview").then(() => state.modified = false);
+
             commit("toggleDropbox", {toggle: false});
           });
           reader.readAsText(response.fileBlob);

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar class="app-toolbar" dense @contextmenu.prevent="contextmenu">
+    <v-toolbar class="app-toolbar" dense>
       <v-toolbar-title class="headline text-uppercase">
         <span>Storyteller</span>
       </v-toolbar-title>
@@ -8,6 +8,9 @@
       <transition name="fade">
         <v-chip color="teal" text-color="white" v-if="$store.state.markdown.saving">Saved
           <v-icon right>check_circle</v-icon>
+        </v-chip>
+        <v-chip color="red" text-color="white" v-if="$store.state.markdown.modified">Edited
+          <v-icon right>warning</v-icon>
         </v-chip>
       </transition>
       <v-chip label v-show="$store.state.markdown.path">
@@ -44,14 +47,6 @@ export default {
     return {
       publicPath: process.env.BASE_URL
     };
-  },
-  methods: {
-    contextmenu(event) {
-      this.$store
-        .dispatch("getThesaurus", "misunderstanding")
-        .then(shit => console.log(shit));
-      console.log(event);
-    }
   },
   components: {
     DropboxFiles,
