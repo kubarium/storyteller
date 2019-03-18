@@ -44,6 +44,12 @@ export default {
         "around"
       );
     },
+    wrapWithBrackets() {
+      this.codemirror.replaceSelection(
+        "(" + this.codemirror.getSelection() + ")",
+        "around"
+      );
+    },
     contextmenu(cm, event) {
       event.preventDefault();
       let pos = cm.coordsChar({ left: event.clientX, top: event.clientY });
@@ -81,7 +87,8 @@ export default {
           "Cmd-B": this.makeBold,
           "Ctrl-B": this.makeBold,
           "Cmd-I": this.makeItalic,
-          "Ctrl-I": this.makeItalic
+          "Ctrl-I": this.makeItalic,
+          "Shift-9": this.wrapWithBrackets
         },
         readOnly: this.$store.getters.isMarkdownOpen ? false : "nocursor"
       };
