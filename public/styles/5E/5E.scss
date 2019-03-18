@@ -111,6 +111,21 @@
     /* border-spacing: 0; */
   }
 
+  & .descriptive {
+    margin-bottom: 1em;
+    background-color: #faf7ea;
+    font-family: ScalySans;
+    border-style: solid;
+    border-width: 7px;
+    border-image: url(/assets/description.png) 12 stretch;
+    border-image-outset: 4px;
+    box-shadow: 0 0 6px #faf7ea;
+
+    p {
+      text-indent: 0em;
+    }
+  }
+
   & table {
     font-family: ScalySans;
     width: 100%;
