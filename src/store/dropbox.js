@@ -113,8 +113,7 @@ export default {
 
     },
     filterEntries({
-      state,
-      commit
+      state
     }, entries) {
       return new Promise((res) => {
         if (state.sort === sort.DATE) {
