@@ -6,35 +6,46 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <transition name="fade">
-        <v-chip color="teal" text-color="white" v-if="$store.state.markdown.saving">Saved
+        <v-chip
+          color="teal"
+          text-color="white"
+          v-if="$store.state.markdown.saving"
+          >Saved
           <v-icon right>check_circle</v-icon>
         </v-chip>
-        <v-chip color="red" text-color="white" v-if="$store.state.markdown.modified">Edited
+        <v-chip
+          color="red"
+          text-color="white"
+          v-if="$store.state.markdown.modified"
+          >Edited
           <v-icon right>priority_high</v-icon>
         </v-chip>
       </transition>
       <v-chip label v-show="$store.state.markdown.path">
-        {{
-        $store.state.markdown.path
-        }}
+        {{ $store.state.markdown.path }}
       </v-chip>
-      <dropbox-files/>
-      <thesaurus/>
-      <table-of-contents/>
+      <dropbox-files />
+      <thesaurus />
+      <table-of-contents />
       <!-- <image-selector/> -->
     </v-toolbar>
 
     <v-content>
-      <router-view/>
+      <router-view />
     </v-content>
     <link
+      :disabled="$store.state.preview.useCustomStyle"
       :href="
         `${publicPath}styles/${$store.getters.activeStyle}/${
           $store.getters.activeStyle
         }.css?v=${$store.state.preview.styleVersion}`
       "
       rel="stylesheet"
-    >
+    />
+
+    <v-style :disabled="!$store.state.preview.useCustomStyle">
+      {{ $store.state.preview.customStyle }}
+    </v-style>
   </v-app>
 </template>
 
@@ -43,6 +54,7 @@ import DropboxFiles from "@/components/DropboxFiles";
 import Thesaurus from "@/components/Thesaurus";
 import TableOfContents from "@/components/TableOfContents";
 /* import ImageSelector from "@/components/ImageSelector"; */
+
 export default {
   name: "App",
   data() {
