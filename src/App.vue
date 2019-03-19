@@ -20,6 +20,7 @@
       </v-chip>
       <dropbox-files/>
       <thesaurus/>
+      <table-of-contents/>
       <!-- <image-selector/> -->
     </v-toolbar>
 
@@ -40,6 +41,7 @@
 <script>
 import DropboxFiles from "@/components/DropboxFiles";
 import Thesaurus from "@/components/Thesaurus";
+import TableOfContents from "@/components/TableOfContents";
 /* import ImageSelector from "@/components/ImageSelector"; */
 export default {
   name: "App",
@@ -50,7 +52,8 @@ export default {
   },
   components: {
     DropboxFiles,
-    Thesaurus
+    Thesaurus,
+    TableOfContents
     /* ImageSelector */
   }
 };

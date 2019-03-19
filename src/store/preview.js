@@ -3,6 +3,7 @@ export default {
   state : {
     content: "",
     fullscreen: false,
+    toc: false,
     styles: [
       {
         name: "5E",
@@ -52,6 +53,15 @@ export default {
       .code
   },
   mutations : {
+    toggleTOC(state, toggle) {
+      state.toc = toggle;
+    },
+    scrollToHeader(_, scrollTop) {
+      document
+        .querySelector(".pages")
+        .parentElement
+        .scrollTop = scrollTop
+    },
     toggleFullscreen(state) {
       state.fullscreen = !state.fullscreen;
       state.fullscreen
