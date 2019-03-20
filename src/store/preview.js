@@ -97,7 +97,7 @@ export default {
       state.sizes.find(size => size.active === true).active = false;
       state.sizes.find(size => size.code === newSize).active = true;
     },
-    publishMarkdown({ state, rootState, getters }, inkFriendly) {
+    publishMarkdown({ state, getters }, inkFriendly) {
       var iframe = document.createElement("iframe");
       ["width", "height", "right", "bottom", "border"].forEach(prop => (iframe.style[prop] = 0));
       iframe.style.position = "fixed";
@@ -119,7 +119,7 @@ export default {
       }" rel="stylesheet"/>
           </head>
           <body class="pages ${getters.activeSize} ${inkFriendly ? "inkFriendly" : "showNoMercy"}">
-            ${rootState.markdown.preview}
+            ${state.content}
           </body>
         </html>
       `;
