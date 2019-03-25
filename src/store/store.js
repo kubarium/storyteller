@@ -5,6 +5,7 @@ import codemirror from "./codemirror";
 import dropbox from "./dropbox";
 import markdown from "./markdown";
 import preview from "./preview";
+import settings from "./settings";
 import thesaurus from "./thesaurus";
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
     dropbox,
     markdown,
     preview,
+    settings,
     thesaurus
   }
 });

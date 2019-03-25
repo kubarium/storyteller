@@ -1,33 +1,33 @@
 <template>
   <v-toolbar dark dense>
     <v-toolbar-title>Preview</v-toolbar-title>
-    <v-spacer />
+    <v-spacer/>
 
     <v-toolbar-items>
-      <v-btn flat @click="$store.commit('toggleTOC', true)">
+      <v-btn icon @click="$store.commit('toggleTOC', true)">
         <v-icon>toc</v-icon>
       </v-btn>
 
-      <v-btn flat @click="$store.commit('toggleFullscreen')">
+      <v-btn icon @click="$store.commit('toggleFullscreen')">
         <v-icon v-if="$store.state.preview.fullscreen">fullscreen_exit</v-icon>
         <v-icon v-else>fullscreen</v-icon>
       </v-btn>
 
-      <v-divider vertical />
+      <v-divider vertical/>
 
-      <style-selector />
+      <style-selector/>
 
-      <v-divider vertical />
+      <v-divider vertical/>
 
-      <paper-size-selector />
+      <paper-size-selector/>
 
-      <v-divider vertical />
+      <v-divider vertical/>
 
-      <print-operations />
+      <print-operations/>
 
-      <v-divider vertical />
+      <v-divider vertical/>
 
-      <file-operations />
+      <file-operations/>
     </v-toolbar-items>
   </v-toolbar>
 </template>

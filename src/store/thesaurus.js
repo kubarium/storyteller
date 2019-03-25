@@ -16,8 +16,7 @@ export default {
       }
     },
     word: "",
-    entries: [],
-    api_key: process.env.VUE_APP_DICTIONARYCOM_THESAURUS_API_KEY
+    entries: []
   },
   getters : {},
   mutations : {
@@ -32,10 +31,14 @@ export default {
   actions : {
     getThesaurus({
       state,
+      rootState,
       commit
     }, word) {
       state.word = word;
-      axios(`${state.urls.thesaurus[state.mode]}${word}?key=${state.api_key}`).then(response => {
+
+      const api_key = rootState.settings.merriamThesaurusAPIKey;
+
+      axios(`${state.urls.thesaurus[state.mode]}${word}?key=${api_key}`).then(response => {
         //window.entries = response.data;
 
         let entries = response
