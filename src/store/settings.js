@@ -18,9 +18,9 @@ export default {
     actions : {
         loadSettings({commit, dispatch}) {
             let settings = JSON.parse(localStorage.getItem("settings"))
-
-            commit("updateDropboxAccessToken", (settings && settings.dropboxAccessToken) || process.env.VUE_APP_DROPBOX_ACCESS_TOKEN)
-            commit("updateThesaurusAPIKey", (settings && settings.thesaurusAPIKey) || process.env.VUE_APP_THESAURUS_API_KEY)
+            console.log(process.env.NODE_ENV)
+            commit("updateDropboxAccessToken", (settings && settings.dropboxAccessToken))
+            commit("updateThesaurusAPIKey", (settings && settings.thesaurusAPIKey))
 
             dispatch("saveSettings")
         },
