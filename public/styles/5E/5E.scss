@@ -5,6 +5,7 @@
 @import "../fonts/ScalySans";
 @import "../fonts/Solberry";
 @import "../printer-settings.scss";
+@import "../utils";
 
 @page {
   margin: 0;
@@ -117,7 +118,7 @@
     font-family: ScalySans;
     border-style: solid;
     border-width: 7px;
-    border-image: url(/assets/description.png) 12 stretch;
+    border-image: pathify("assets/description.png") 12 stretch;
     border-image-outset: 4px;
     box-shadow: 0 0 6px #faf7ea;
 
@@ -163,7 +164,7 @@
     border-image-outset: 25px 17px;
     border-image-repeat: stretch;
     border-image-slice: 150 200 150 200;
-    border-image-source: url(/assets/table.png);
+    border-image-source: pathify("assets/table.png");
     border-image-width: 47px;
   }
 
@@ -180,7 +181,7 @@
     background-color: #e0e5c1;
     border-style: solid;
     border-width: 11px;
-    border-image: url(/assets/blockquote.png) 11;
+    border-image: pathify("assets/blockquote.png") 11;
     border-image-outset: 9px 0;
     box-shadow: 1px 4px 14px #888;
   }
@@ -221,7 +222,7 @@
     left: 0;
     height: 50px;
     width: 100%;
-    background-image: url(./assets/footer.png);
+    background-image: pathify("assets/footer.png");
     background-size: cover;
   }
 }
