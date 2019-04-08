@@ -90,19 +90,19 @@
   margin: 0;
 }
 .pages.letter-portrait .page {
-  background-image: url("/assets/5E/5E-letter-portrait.jpg");
+  background-image: url(/storyteller//assets/5E/5E-letter-portrait.jpg);
 }
 
 .pages.letter-landscape .page {
-  background-image: url("/assets/5E/5E-letter-landscape.jpg");
+  background-image: url(/storyteller//assets/5E/5E-letter-landscape.jpg);
 }
 
 .pages.a4-portrait .page {
-  background-image: url("/assets/5E/5E-a4-portrait.jpg");
+  background-image: url(/storyteller//assets/5E/5E-a4-portrait.jpg);
 }
 
 .pages.a4-landscape .page {
-  background-image: url("/assets/5E/5E-a4-landscape.jpg");
+  background-image: url(/storyteller//assets/5E/5E-a4-landscape.jpg);
 }
 
 .pages .page {
