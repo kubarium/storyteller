@@ -7,8 +7,12 @@
   >
     <v-card>
       <v-card-title>
-        {{$store.state.dropbox.mode==="markdown" ? "Dropbox Files" : "Image Files" }}
-        <v-spacer/>
+        {{
+          $store.state.dropbox.mode === "markdown"
+            ? "Dropbox Files"
+            : "Image Files"
+        }}
+        <v-spacer />
         <v-btn-toggle
           mandatory
           v-model="$store.state.dropbox.sort"
@@ -27,7 +31,7 @@
         </v-btn>
       </v-card-title>
 
-      <v-divider/>
+      <v-divider />
 
       <v-breadcrumbs :items="$store.state.dropbox.breadcrumbs">
         <template slot="item" slot-scope="props">
@@ -35,7 +39,7 @@
         </template>
       </v-breadcrumbs>
 
-      <v-divider/>
+      <v-divider />
 
       <v-card-text style="height:300px">
         <v-list>
@@ -49,7 +53,9 @@
             >
               <v-list-tile-avatar>
                 <v-icon v-if="entry['.tag'] === 'folder'">folder</v-icon>
-                <v-icon v-else-if="entry['.tag'] === 'parent'">arrow_upward</v-icon>
+                <v-icon v-else-if="entry['.tag'] === 'parent'"
+                  >arrow_upward</v-icon
+                >
                 <v-icon v-else>edit</v-icon>
               </v-list-tile-avatar>
 
@@ -76,9 +82,19 @@
       <v-divider></v-divider>
 
       <v-card-actions>
-        <v-text-field label="Filter" @click:clear="clearFilter($event)" clearable v-model="filter"/>
-        <v-spacer/>
-        <v-btn color="primary" flat @click="$store.commit('toggleDropbox', {toggle:false})">Close</v-btn>
+        <v-text-field
+          label="Filter"
+          @click:clear="clearFilter($event)"
+          clearable
+          v-model="filter"
+        />
+        <v-spacer />
+        <v-btn
+          color="primary"
+          flat
+          @click="$store.commit('toggleDropbox', { toggle: false })"
+          >Close</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -131,12 +147,12 @@ export default {
         return this.$store.dispatch("addImage", entry.path_lower);
       }
     }
-  },
-  created() {
+  }
+  /* created() {
     this.$store
       .dispatch("connectDropbox")
-      .then(() => this.$store.dispatch("getEntries", ""));
-  }
+      .then(() => this.$store.dispatch("getEntries", "")).catch(console.log);
+  } */
 };
 </script>
 

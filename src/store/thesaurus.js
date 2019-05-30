@@ -6,7 +6,7 @@ const mode = {
 };
 
 export default {
-  state : {
+  state: {
     dialog: false,
     mode: mode.JSON,
     urls: {
@@ -18,9 +18,8 @@ export default {
     word: "",
     entries: []
   },
-  getters : {},
-  mutations : {
-
+  getters: {},
+  mutations: {
     updateThesaurus(state, thesaurus) {
       state.entries = thesaurus;
     },
@@ -28,52 +27,43 @@ export default {
       state.dialog = toggle;
     }
   },
-  actions : {
-    getThesaurus({
-      state,
-      rootState,
-      commit
-    }, word) {
+  actions: {
+    getThesaurus({ state, rootState, commit }, word) {
       state.word = word;
 
-      const api_key = rootState.settings.merriamThesaurusAPIKey;
+      const api_key = rootState.settings.thesaurusAPIKey;
 
       axios(`${state.urls.thesaurus[state.mode]}${word}?key=${api_key}`).then(response => {
         //window.entries = response.data;
 
-        let entries = response
-          .data
-          .filter(entry => entry.hwi && entry.hwi.hw === word);
+        if (!Array.isArray(response.data)) return alert("You may want to check settings for Thesaurus API!");
 
-        let thesaurus = []
+        let entries = response.data.filter(entry => entry.hwi && entry.hwi.hw === word);
+
+        let thesaurus = [];
 
         if (entries && entries.length) {
-
           thesaurus = entries.map(entry => {
             let fl = entry.fl;
-            let synonyms = entry.meta.syns
+            let synonyms = entry.meta.syns;
 
-            let antonyms = entry.meta.ants
+            let antonyms = entry.meta.ants;
 
-            let related = entry
-              .def[0]
-              .sseq
+            let related = entry.def[0].sseq
               .map(sseq => sseq.flat())
               .map(sseq => sseq[1])
               .filter(sseq => sseq.rel_list)
               .map(sseq => sseq.rel_list)
               .map(rel => rel.map(rel => rel.flat().map(rel => rel.wd)));
 
-            let near = entry
-              .def[0]
-              .sseq
+            let near = entry.def[0].sseq
               .map(sseq => sseq.flat())
               .map(sseq => sseq[1])
               .filter(sseq => sseq.near_list)
               .map(sseq => sseq.near_list)
               .map(near => near.map(near => near.flat().map(near => near.wd)));
-            return {fl, synonyms, antonyms, related, near}
-          })
+            return { fl, synonyms, antonyms, related, near };
+          });
         }
 
         commit("updateThesaurus", thesaurus);
