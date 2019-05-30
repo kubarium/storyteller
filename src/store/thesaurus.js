@@ -38,7 +38,8 @@ export default {
 
         if (!Array.isArray(response.data)) return alert("You may want to check settings for Thesaurus API!");
 
-        let entries = response.data.filter(entry => entry.hwi && entry.hwi.hw === word);
+        let entries = response.data;
+        //.filter(entry => entry.hwi && entry.hwi.hw === word);
 
         let thesaurus = [];
 
