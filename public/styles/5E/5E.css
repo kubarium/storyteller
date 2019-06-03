@@ -213,7 +213,7 @@
     margin-bottom: 1em;
     font-size: 10pt; }
     .pages .page table thead {
-      display: table-row-group;
+      display: table-header-group;
       font-weight: 800; }
       .pages .page table thead th {
         vertical-align: bottom;

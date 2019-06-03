@@ -18,6 +18,10 @@ window.addEventListener("keydown", event => {
           mode: "markdown"
         });
         break;
+      case "d":
+        event.preventDefault();
+        store.dispatch("applyStyle", store.getters.activeStyle);
+        break;
       case "F12":
         event.preventDefault();
         store.dispatch("revertMarkdown");
