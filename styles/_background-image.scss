@@ -1,7 +1,7 @@
 @mixin background-image($style, $file) {
   @each $size-orientation in letter-portrait, letter-landscape, a4-portrait, a4-landscape {
     .pages.#{$size-orientation} .page {
-      background-image: url("/assets/#{$style}/#{$file}-#{$size-orientation}.jpg");
+      background-image: pathify("assets/#{$style}/#{$file}-#{$size-orientation}.jpg");
     }
   }
 }
