@@ -251,7 +251,11 @@
     box-shadow: 1px 4px 14px #888; }
   .pages .page .wide {
     column-span: all; }
+  .pages .page:nth-child(even) .footnote {
+    left: 80px;
+    text-align: left; }
   .pages .page .footnote {
+    content: "aaa";
     position: absolute;
     right: 80px;
     bottom: 32px;
@@ -260,6 +264,8 @@
     font-size: 0.8em;
     color: #c9ad6a;
     text-align: right; }
+  .pages .page:nth-child(even) .pageNumber {
+    left: 2px; }
   .pages .page .pageNumber {
     position: absolute;
     right: 2px;
@@ -270,6 +276,8 @@
     text-align: center; }
   .pages .page .pageNumber.auto::after {
     content: counter(page-numbers); }
+  .pages .page:nth-child(even)::after {
+    transform: scaleX(-1); }
   .pages .page:after {
     content: "";
     position: absolute;
