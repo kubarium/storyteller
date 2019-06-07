@@ -1,33 +1,33 @@
 <template>
   <v-dialog
-    v-model="$store.state.imageSelector.dialog"
-    width="900"
+    v-model="$store.state.imageSettings.dialog"
+    width="600"
     scrollable
-    persistent
+    content-class="imageSettings"
     @input="$store.dispatch('refreshImages')"
   >
-    <!-- <v-card>
+    <v-card>
       <v-card-title
-        >Insert Images
-        <v-spacer />
+        >Image Settings
+        <!-- <v-spacer />
         <v-btn icon flat @click="$store.dispatch('refreshImages')">
           <v-icon>refresh</v-icon>
-        </v-btn>
+        </v-btn> -->
       </v-card-title>
       <v-divider />
-      <v-breadcrumbs :items="$store.state.imageSelector.breadcrumbs">
+      <!-- <v-breadcrumbs :items="$store.state.images.breadcrumbs">
         <template slot="item" slot-scope="props">
           <a @click="clickEntry(props.item)">{{ props.item.text }}</a>
         </template>
       </v-breadcrumbs>
-      <v-divider />
+      <v-divider /> -->
       <v-card-text style="height:500px">
-        <v-list>
+        <!-- <v-list>
           <template v-for="(entry, index) in $store.state.images.entries">
             <v-divider v-show="index > 0" :key="index"></v-divider>
 
             <v-list-tile
-              :disabled="$store.state.imageSelector.fetching"
+              :disabled="$store.state.images.fetching"
               :key="entry.title"
               @click="clickEntry(entry)"
             >
@@ -45,7 +45,7 @@
 
               <v-list-tile-action v-if="entry['.tag'] === 'file'">
                 <v-btn
-                  :disabled="$store.state.imageSelector.fetching"
+                  :disabled="$store.state.images.fetching"
                   icon
                   @click.stop="
                     $store.dispatch('deleteFromDropbox', entry.path_lower)
@@ -56,7 +56,17 @@
               </v-list-tile-action>
             </v-list-tile>
           </template>
-        </v-list>
+        </v-list> -->
+        <v-textarea
+          :value="$store.state.imageSettings.url"
+          label="Image URL"
+          no-resize
+        ></v-textarea>
+        <v-select
+          :items="modes"
+          v-model="$store.state.imageSettings.styles['mix-blend-mode']"
+          label="Blend Mode"
+        ></v-select>
       </v-card-text>
 
       <v-divider></v-divider>
@@ -66,17 +76,25 @@
         <v-btn
           color="primary"
           flat
-          @click="$store.commit('toggleImageSelector', false)"
+          @click="$store.commit('toggleImageSettings', false)"
           >Close</v-btn
         >
       </v-card-actions>
-    </v-card> -->
+    </v-card>
   </v-dialog>
 </template>
 
 <script>
+//normal|multiply|screen|overlay|darken|lighten|color-dodge|color-burn|difference|exclusion|hue|saturation|color|luminosity
 export default {
-  name: "image-selector",
+  name: "image-settings",
+  data() {
+    return {
+      modes: "normal|multiply|screen|overlay|darken|lighten|color-dodge|color-burn|difference|exclusion|hue|saturation|color|luminosity".split(
+        "|"
+      )
+    };
+  },
   methods: {
     clickEntry(entry) {
       console.log(entry);
@@ -100,5 +118,10 @@ export default {
 };
 </script>
 
-<style>
+
+<style lang="scss" >
+.imageSettings {
+  position: absolute;
+  left: 2%;
+}
 </style>

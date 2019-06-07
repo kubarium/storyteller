@@ -31,7 +31,8 @@
       <dropbox-files />
       <thesaurus />
       <table-of-contents />
-      <!-- <image-selector/> -->
+      <image-settings />
+      <image-selector />
     </v-toolbar>
 
     <v-content>
@@ -58,7 +59,8 @@ import DropboxFiles from "@/components/DropboxFiles";
 import Thesaurus from "@/components/Thesaurus";
 import Settings from "@/components/Settings";
 import TableOfContents from "@/components/TableOfContents";
-/* import ImageSelector from "@/components/ImageSelector"; */
+import ImageSettings from "@/components/ImageSettings";
+import ImageSelector from "@/components/ImageSelector";
 
 export default {
   name: "App",
@@ -71,8 +73,9 @@ export default {
     DropboxFiles,
     Settings,
     Thesaurus,
-    TableOfContents
-    /* ImageSelector */
+    TableOfContents,
+    ImageSettings,
+    ImageSelector
   },
   mounted() {
     document.querySelector(".pages").addEventListener("dblclick", () => {

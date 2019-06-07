@@ -55,6 +55,15 @@ export default {
       let pos = cm.coordsChar({ left: event.clientX, top: event.clientY });
       let token = cm.getTokenAt(pos);
       let word = token.string.toLowerCase().replace(/[.,;!?]$/, "");
+
+      if (word === "img") {
+        let img = cm.getLine(pos.line);
+        console.log(img);
+        this.$store.commit("toggleImageSettings", true);
+        this.$store.dispatch("getImageSettings", img);
+        return;
+      }
+
       if (word.length > 1) {
         cm.setSelection(
           { line: pos.line, ch: token.start },

@@ -3,6 +3,8 @@ import Vuex from "vuex";
 
 import codemirror from "./codemirror";
 import dropbox from "./dropbox";
+import imageSelector from "./imageSelector";
+import imageSettings from "./imageSettings";
 import markdown from "./markdown";
 import preview from "./preview";
 import settings from "./settings";
@@ -13,6 +15,8 @@ const store = new Vuex.Store({
   modules: {
     codemirror,
     dropbox,
+    imageSelector,
+    imageSettings,
     markdown,
     preview,
     settings,
