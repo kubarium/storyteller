@@ -43,7 +43,7 @@ export default {
 
         let thesaurus = [];
 
-        if (entries && entries.length) {
+        if (entries && entries.length && entries[0].fl) {
           thesaurus = entries.map(entry => {
             let fl = entry.fl;
             let synonyms = entry.meta.syns;
