@@ -66,7 +66,14 @@ export default {
   name: "App",
   data() {
     return {
-      publicPath: process.env.BASE_URL
+      publicPath: process.env.BASE_URL,
+
+      config: {
+        cloud_name: "viroidgames",
+        api_key: "441248998799354"
+        /* button_class: "operation-image",
+        button_caption: "Insert Images" */
+      }
     };
   },
   components: {
@@ -78,9 +85,20 @@ export default {
     ImageSelector
   },
   mounted() {
+    //piggyback on double click on preview area to refresh applied styles
     document.querySelector(".pages").addEventListener("dblclick", () => {
       this.$store.dispatch("applyStyle", this.$store.getters.activeStyle);
     });
+    //initialize Cloudinary
+    window.ml = window.cloudinary.createMediaLibrary(this.config, {
+      insertHandler: this.fuck
+    });
+  },
+  methods: {
+    fuck(data) {
+      console.log("I'm inserted", data);
+      this.$store.dispatch("addImage", data.assets[0].url);
+    }
   }
 };
 </script>
