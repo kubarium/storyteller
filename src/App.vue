@@ -32,7 +32,6 @@
       <thesaurus />
       <table-of-contents />
       <image-settings />
-      <image-selector />
     </v-toolbar>
 
     <v-content>
@@ -60,7 +59,6 @@ import Thesaurus from "@/components/Thesaurus";
 import Settings from "@/components/Settings";
 import TableOfContents from "@/components/TableOfContents";
 import ImageSettings from "@/components/ImageSettings";
-import ImageSelector from "@/components/ImageSelector";
 
 export default {
   name: "App",
@@ -71,8 +69,6 @@ export default {
       config: {
         cloud_name: "viroidgames",
         api_key: "441248998799354"
-        /* button_class: "operation-image",
-        button_caption: "Insert Images" */
       }
     };
   },
@@ -82,7 +78,6 @@ export default {
     Thesaurus,
     TableOfContents,
     ImageSettings,
-    ImageSelector
   },
   mounted() {
     //piggyback on double click on preview area to refresh applied styles
@@ -91,12 +86,11 @@ export default {
     });
     //initialize Cloudinary
     window.ml = window.cloudinary.createMediaLibrary(this.config, {
-      insertHandler: this.fuck
+      insertHandler: this.addImage
     });
   },
   methods: {
-    fuck(data) {
-      console.log("I'm inserted", data);
+    addImage(data) {
       this.$store.dispatch("addImage", data.assets[0].url);
     }
   }

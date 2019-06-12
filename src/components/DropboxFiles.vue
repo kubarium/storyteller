@@ -6,12 +6,7 @@
     @input="$store.dispatch('refreshEntries')"
   >
     <v-card>
-      <v-card-title>
-        {{
-          $store.state.dropbox.mode === "markdown"
-            ? "Dropbox Files"
-            : "Image Files"
-        }}
+      <v-card-title>Dropbox Files
         <v-spacer />
         <v-btn-toggle
           mandatory
@@ -41,7 +36,7 @@
 
       <v-divider />
 
-      <v-card-text style="height:300px">
+      <v-card-text style="height:800px">
         <v-list>
           <template v-for="(entry, index) in $store.state.dropbox.entries">
             <v-divider v-show="index > 0" :key="index"></v-divider>
@@ -142,17 +137,8 @@ export default {
       if (this.$store.getters.isMarkdown(entry)) {
         return this.$store.dispatch("openMarkdown", entry.path_lower);
       }
-
-      if (this.$store.getters.isImage(entry)) {
-        return this.$store.dispatch("addImage", entry.path_lower);
-      }
     }
   }
-  /* created() {
-    this.$store
-      .dispatch("connectDropbox")
-      .then(() => this.$store.dispatch("getEntries", "")).catch(console.log);
-  } */
 };
 </script>
 

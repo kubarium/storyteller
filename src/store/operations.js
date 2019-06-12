@@ -16,7 +16,7 @@ export const addCoverPage = `
 ##### Your awesome subtitle with a catchy phrase goes here
 </div>
 ${addPageBreak}
-`
+`;
 
 export const addWideClassTable = `
 <div class="classTable wide">
@@ -67,13 +67,13 @@ export const addTable = `
 | Topic 1 | Topic 2 |
 |:----:|:-------------|
 | Content | Content |
-`
+`;
 
 export const addWideTable = `
 <div class="wide">
 ${addTable}
 </div>
-`
+`;
 
 export const addCompactTables = `
 <div style='column-count:2'>
@@ -97,8 +97,8 @@ export const addCompactTables = `
 |  9  | Radiant     |
 |  10 | Thunder     |
 </div>
-`
+`;
 
-export const addImage = (path) => `
-<img src="${path}" style="position:absolute; width: 50%; top: 50%; left: 50%"/>
-`
+export const addImage = path => `
+<img src="${path}" style="position:absolute;  idth: 50%; top: 50%; left: 50%; mix-blend-mode:normal"/>
+`;

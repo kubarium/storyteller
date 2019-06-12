@@ -49,24 +49,12 @@ export default {
     }
   },
   actions: {
-    addImage({ rootState, commit }, path) {
-      console.log("FUCK ME?");
+    addImage(path) {
       window.codemirror.getDoc().replaceRange(`${operations["addImage"](path)}`, window.codemirror.getCursor());
-
-      /* rootState.dropbox.dbx.filesGetTemporaryLink({ path }).then(file => {
-        window.codemirror.getDoc().replaceRange(`${operations["addImage"](file.link)}`, window.codemirror.getCursor());
-        commit("toggleDropbox", { toggle: false });
-      }); */
     },
     applyOperation({ commit }, operation) {
       if (operation === "addImage") {
         window.ml.show();
-
-        /* commit("toggleDropbox", {
-          toggle: true,
-          mode: "image"
-        }); */
-        return;
       } else {
         window.codemirror.getDoc().replaceRange(`\n${operations[operation]}\n`, window.codemirror.getCursor());
         window.codemirror.focus();
