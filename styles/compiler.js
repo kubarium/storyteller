@@ -10,7 +10,7 @@ const css = `${file}.css`;
 const scss = `${file}.scss`;
 
 let data = fs.readFileSync(scss, { encoding: "utf8" });
-data = `$root: "/${argv.env === "production" ? "storyteller/" : ""}"; ${data}`;
+data = `$root: "/${argv.env === "p" ? "storyteller/" : ""}"; ${data}`;
 
 sass.render(
   {
