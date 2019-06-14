@@ -77,7 +77,7 @@ export default {
     Settings,
     Thesaurus,
     TableOfContents,
-    ImageSettings,
+    ImageSettings
   },
   mounted() {
     //piggyback on double click on preview area to refresh applied styles
@@ -91,7 +91,10 @@ export default {
   },
   methods: {
     addImage(data) {
-      this.$store.dispatch("addImage", data.assets[0].url);
+      this.$store.dispatch(
+        "addImage",
+        data.assets[0].url.replace(/https?:/, "")
+      );
     }
   }
 };

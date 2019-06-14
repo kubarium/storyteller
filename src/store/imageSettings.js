@@ -10,22 +10,23 @@ export default {
       left: "",
       bottom: "",
       right: "",
-      "mix-blend-mode": "screen"
+      "mix-blend-mode": ""
     }
-
-    /* mode: mode.MARKDOWN,
-        sort: sort.NAME,
-        path: "",
-        dbx: null,
-        entries: null,
-        fetching: false,
-        filter: "",
-        breadcrumbs: [] */
   },
   getters: {
+    image: state => {
+      let styles = Object.entries(state.styles)
+        .filter(entry => entry[1] !== "")
+        .map(entry => entry.join(":"))
+        .join(";");
+
+      return `<img src="${state.url}" style="${styles}"/>`;
+    },
+
     imageWidth: state => (state.styles.width && RegExp(/\d+/, "g").exec(state.styles.width)[0]) || "",
-    imageHeight: state => (state.styles.height && RegExp(/\d+/, "g").exec(state.styles.height)[0]) || "",
     imageWidthUnit: state => state.styles.width.split(RegExp(/\d+/, "g"))[1] || "px",
+
+    imageHeight: state => (state.styles.height && RegExp(/\d+/, "g").exec(state.styles.height)[0]) || "",
     imageHeightUnit: state => state.styles.height.split(RegExp(/\d+/, "g"))[1] || "px",
 
     imagePositionLeft: state => (state.styles.left && RegExp(/\d+/, "g").exec(state.styles.left)[0]) || "",
@@ -45,31 +46,38 @@ export default {
       state.dialog = toggle;
     },
     updateStyles(state, styles) {
-      console.log(Object.assign({}, state.styles, styles));
       state.styles = Object.assign({}, state.styles, styles);
-      //[style.key] = style.value;
-    },
-    updateSettings(state, setting) {
-      state[setting.key] = setting.value;
     }
   },
   actions: {
-    getImageSettings({ commit }, img) {
+    updateStyles({ state }, style) {
+      return new Promise(resolve => {
+        state.styles[style.key] = style.value;
+        resolve();
+      });
+    },
+    updateURL({ state }, url) {
+      return new Promise(resolve => {
+        state.url = url;
+        resolve();
+      });
+    },
+    getImageSettings({ commit, dispatch }, img) {
       const url = RegExp(/src="(.*?)"/).exec(img)[1];
-      console.log(url);
-      commit("updateSettings", { key: "url", value: url });
+
+      dispatch("updateURL", url);
+
       const styles = RegExp(/style="(.*?)"/)
         .exec(img)[1]
         .replace(RegExp(/ /, "g"), "")
-        .split(";");
+        .split(";")
+        .reduce((result, item) => {
+          const entry = item.split(":");
 
-      let delir = styles.reduce((result, item) => {
-        const entry = item.split(":");
-
-        result[entry[0]] = entry[1];
-        return result;
-      }, {});
-      commit("updateStyles", delir);
+          result[entry[0]] = entry[1];
+          return result;
+        }, {});
+      commit("updateStyles", styles);
       //commit("updateStyles", { key: "url", value: url });
 
       //state.settings;

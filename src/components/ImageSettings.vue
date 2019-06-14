@@ -4,7 +4,6 @@
     width="600"
     scrollable
     content-class="imageSettings"
-    @input="$store.dispatch('refreshImages')"
   >
     <v-card>
       <v-card-title>Image Settings </v-card-title>
@@ -17,7 +16,8 @@
                 label="Position"
                 row
                 hide-details
-                v-model="$store.state.imageSettings.styles.position"
+                :value="$store.state.imageSettings.styles.position"
+                @change="updateStyles('position', $event)"
               >
                 <v-radio
                   v-for="position in positions"
@@ -31,8 +31,9 @@
               <v-select
                 :items="modes"
                 hide-details
-                v-model="$store.state.imageSettings.styles['mix-blend-mode']"
+                :value="$store.state.imageSettings.styles['mix-blend-mode']"
                 label="Blend Mode"
+                @change="updateStyles('mix-blend-mode', $event)"
               />
             </v-flex>
           </v-layout>
@@ -46,8 +47,15 @@
                   <v-text-field
                     type="number"
                     label="Width"
-                    v-model="$store.getters.imageWidth"
+                    :min="0"
+                    :value="$store.getters.imageWidth"
                     hide-details
+                    @input="
+                      updateStyles(
+                        'width',
+                        `${$event}${$store.getters.imageWidthUnit}`
+                      )
+                    "
                   />
                 </v-flex>
                 <v-flex xs6>
@@ -55,7 +63,13 @@
                     row
                     mandatory
                     hide-details
-                    v-model="$store.getters.imageWidthUnit"
+                    :value="$store.getters.imageWidthUnit"
+                    @change="
+                      updateStyles(
+                        'width',
+                        `${$store.getters.imageWidth}${$event}`
+                      )
+                    "
                   >
                     <v-radio
                       v-for="unit in units"
@@ -73,8 +87,15 @@
                   <v-text-field
                     type="number"
                     label="Height"
-                    v-model="$store.getters.imageHeight"
+                    :min="0"
+                    :value="$store.getters.imageHeight"
                     hide-details
+                    @input="
+                      updateStyles(
+                        'height',
+                        `${$event}${$store.getters.imageHeightUnit}`
+                      )
+                    "
                   />
                 </v-flex>
                 <v-flex xs6>
@@ -82,7 +103,13 @@
                     row
                     mandatory
                     hide-details
-                    v-model="$store.getters.imageHeightUnit"
+                    :value="$store.getters.imageHeightUnit"
+                    @change="
+                      updateStyles(
+                        'height',
+                        `${$store.getters.imageHeight}${$event}`
+                      )
+                    "
                   >
                     <v-radio
                       v-for="unit in units"
@@ -105,8 +132,14 @@
                   <v-text-field
                     type="number"
                     label="Top"
-                    v-model="$store.getters.imagePositionTop"
+                    :value="$store.getters.imagePositionTop"
                     hide-details
+                    @input="
+                      updateStyles(
+                        'top',
+                        `${$event}${$store.getters.imagePositionTopUnit}`
+                      )
+                    "
                   />
                 </v-flex>
                 <v-flex xs6>
@@ -114,7 +147,13 @@
                     row
                     mandatory
                     hide-details
-                    v-model="$store.getters.imagePositionTopUnit"
+                    :value="$store.getters.imagePositionTopUnit"
+                    @change="
+                      updateStyles(
+                        'top',
+                        `${$store.getters.imagePositionTop}${$event}`
+                      )
+                    "
                   >
                     <v-radio
                       v-for="unit in units"
@@ -132,8 +171,14 @@
                   <v-text-field
                     type="number"
                     label="Bottom"
-                    v-model="$store.getters.imagePositionBottom"
+                    :value="$store.getters.imagePositionBottom"
                     hide-details
+                    @input="
+                      updateStyles(
+                        'bottom',
+                        `${$event}${$store.getters.imagePositionBottomUnit}`
+                      )
+                    "
                   />
                 </v-flex>
                 <v-flex xs6>
@@ -141,7 +186,13 @@
                     row
                     mandatory
                     hide-details
-                    v-model="$store.getters.imagePositionBottomUnit"
+                    :value="$store.getters.imagePositionBottomUnit"
+                    @change="
+                      updateStyles(
+                        'bottom',
+                        `${$store.getters.imagePositionBottom}${$event}`
+                      )
+                    "
                   >
                     <v-radio
                       v-for="unit in units"
@@ -164,8 +215,14 @@
                   <v-text-field
                     type="number"
                     label="Left"
-                    v-model="$store.getters.imagePositionLeft"
+                    :value="$store.getters.imagePositionLeft"
                     hide-details
+                    @input="
+                      updateStyles(
+                        'left',
+                        `${$event}${$store.getters.imagePositionLeftUnit}`
+                      )
+                    "
                   />
                 </v-flex>
                 <v-flex xs6>
@@ -173,7 +230,13 @@
                     row
                     mandatory
                     hide-details
-                    v-model="$store.getters.imagePositionLeftUnit"
+                    :value="$store.getters.imagePositionLeftUnit"
+                    @change="
+                      updateStyles(
+                        'left',
+                        `${$store.getters.imagePositionLeft}${$event}`
+                      )
+                    "
                   >
                     <v-radio
                       v-for="unit in units"
@@ -191,8 +254,14 @@
                   <v-text-field
                     type="number"
                     label="Right"
-                    v-model="$store.getters.imagePositionRight"
+                    :value="$store.getters.imagePositionRight"
                     hide-details
+                    @input="
+                      updateStyles(
+                        'right',
+                        `${$event}${$store.getters.imagePositionRight}`
+                      )
+                    "
                   />
                 </v-flex>
                 <v-flex xs6>
@@ -200,7 +269,13 @@
                     row
                     mandatory
                     hide-details
-                    v-model="$store.getters.imagePositionRightUnit"
+                    :value="$store.getters.imagePositionRightUnit"
+                    @change="
+                      updateStyles(
+                        'right',
+                        `${$store.getters.imagePositionRight}${$event}`
+                      )
+                    "
                   >
                     <v-radio
                       v-for="unit in units"
@@ -221,12 +296,13 @@
             :value="$store.state.imageSettings.url"
             label="Image URL"
             no-resize
+            @input="updateURL"
           />
-          <v-textarea
+          <!-- <v-textarea
             :value="$store.state.imageSettings.styles.other"
             label="Other Styles"
             no-resize
-          />
+          /> -->
         </v-container>
       </v-card-text>
 
@@ -258,24 +334,32 @@ export default {
     };
   },
   methods: {
-    clickEntry(entry) {
-      console.log(entry);
-      if (this.$store.getters.isParent(entry)) {
-        return this.$store.dispatch("getEntries", entry.path_lower);
+    updateURL(value) {
+      this.$store.dispatch("updateURL", value).then(this.updateImage);
+    },
+    updateStyles(key, value) {
+      //console.log(RegExp(/\d+/, "g").test(value));
+      if (key !== "position" && key !== "mix-blend-mode") {
+        value = RegExp(/\d+/, "g").test(value) ? value : "";
       }
 
-      if (this.$store.getters.isFolder(entry)) {
-        return this.$store.dispatch("getEntries", entry.path_lower);
-      }
-
-      if (this.$store.getters.isImage(entry)) {
-        return this.$store.dispatch("addImage", entry.path_lower);
-      }
+      this.$store
+        .dispatch("updateStyles", { key, value })
+        .then(this.updateImage);
+    },
+    updateImage() {
+      window.codemirror.getDoc().replaceRange(
+        this.$store.getters.image,
+        {
+          line: window.codemirror.getCursor().line,
+          ch: 0
+        },
+        {
+          line: window.codemirror.getCursor().line,
+          ch: window.codemirror.getCursor().ch
+        }
+      );
     }
-  },
-  mounted() {
-    //this.$store.dispatch("connectDropbox").then();
-    //this.$store.dispatch("getImages", "");
   }
 };
 </script>

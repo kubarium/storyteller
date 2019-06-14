@@ -58,7 +58,11 @@ export default {
 
       if (word === "img") {
         let img = cm.getLine(pos.line);
-        console.log(img);
+
+        cm.setSelection(
+          { line: pos.line, ch: 0 },
+          { line: pos.line, ch: img.length }
+        );
         this.$store.commit("toggleImageSettings", true);
         this.$store.dispatch("getImageSettings", img);
         return;
@@ -67,7 +71,9 @@ export default {
       if (word.length > 1) {
         cm.setSelection(
           { line: pos.line, ch: token.start },
-          { line: pos.line, ch: token.start + word.length }
+          { line: pos.line, ch: token.start + word.length }, {
+            bias:1
+          }
         );
         this.$store.dispatch("getThesaurus", word);
       }

@@ -49,7 +49,7 @@ export default {
     }
   },
   actions: {
-    addImage(path) {
+    addImage({}, path) {
       window.codemirror.getDoc().replaceRange(`${operations["addImage"](path)}`, window.codemirror.getCursor());
     },
     applyOperation({ commit }, operation) {
