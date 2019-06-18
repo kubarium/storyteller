@@ -8,37 +8,7 @@
     <v-card>
       <v-card-title>Image Settings </v-card-title>
       <v-divider />
-      <v-card-text style="height:600px">
-        <v-container grid-list-lg class="px-0 py-2">
-          <v-layout>
-            <v-flex xs8>
-              <v-radio-group
-                label="Position"
-                row
-                hide-details
-                :value="$store.state.imageSettings.styles.position"
-                @change="updateStyles('position', $event)"
-              >
-                <v-radio
-                  v-for="position in positions"
-                  :key="position"
-                  :label="`${position}`"
-                  :value="position"
-                ></v-radio>
-              </v-radio-group>
-            </v-flex>
-            <v-flex xs4>
-              <v-select
-                :items="modes"
-                hide-details
-                :value="$store.state.imageSettings.styles['mix-blend-mode']"
-                label="Blend Mode"
-                @change="updateStyles('mix-blend-mode', $event)"
-              />
-            </v-flex>
-          </v-layout>
-        </v-container>
-
+      <v-card-text style="height:450px">
         <v-container grid-list-lg class="px-0 py-2">
           <v-layout>
             <v-flex xs6>
@@ -290,19 +260,45 @@
           </v-layout>
         </v-container>
 
+        <v-container grid-list-lg class="px-0 py-2">
+          <v-layout>
+            <v-flex xs4>
+              <v-text-field
+                type="number"
+                label="Rotate"
+                :value="$store.getters.imageRotation"
+                hide-details
+                @input="updateRotation"
+              />
+            </v-flex>
+            <v-flex xs4>
+              <v-select
+                :items="positions"
+                hide-details
+                :value="$store.state.imageSettings.styles.position"
+                label="Position"
+                @change="updateStyles('position', $event)"
+              />
+            </v-flex>
+            <v-flex xs4>
+              <v-select
+                :items="modes"
+                hide-details
+                :value="$store.state.imageSettings.styles['mix-blend-mode']"
+                label="Blend Mode"
+                @change="updateStyles('mix-blend-mode', $event)"
+              />
+            </v-flex>
+          </v-layout>
+        </v-container>
+
         <v-container class="px-0 py-2">
-          <v-divider />
           <v-textarea
             :value="$store.state.imageSettings.url"
             label="Image URL"
             no-resize
             @input="updateURL"
           />
-          <!-- <v-textarea
-            :value="$store.state.imageSettings.styles.other"
-            label="Other Styles"
-            no-resize
-          /> -->
         </v-container>
       </v-card-text>
 
@@ -338,7 +334,6 @@ export default {
       this.$store.dispatch("updateURL", value).then(this.updateImage);
     },
     updateStyles(key, value) {
-      //console.log(RegExp(/\d+/, "g").test(value));
       if (key !== "position" && key !== "mix-blend-mode") {
         value = RegExp(/\d+/, "g").test(value) ? value : "";
       }
@@ -346,6 +341,14 @@ export default {
       this.$store
         .dispatch("updateStyles", { key, value })
         .then(this.updateImage);
+    },
+    updateRotation(value) {
+      //sanitize
+      let degree = value === "" ? 0 : value;
+      //clamp
+      degree = degree < 0 ? 359 : degree > 359 ? 0 : degree;
+
+      this.$store.dispatch("updateRotation", degree).then(this.updateImage);
     },
     updateImage() {
       window.codemirror.getDoc().replaceRange(

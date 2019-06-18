@@ -10,7 +10,8 @@ export default {
       left: "",
       bottom: "",
       right: "",
-      "mix-blend-mode": ""
+      "mix-blend-mode": "",
+      transform: "rotateZ(90deg)"
     }
   },
   getters: {
@@ -39,7 +40,9 @@ export default {
     imagePositionTopUnit: state => state.styles.top.split(RegExp(/\d+/, "g"))[1] || "px",
 
     imagePositionBottom: state => (state.styles.bottom && RegExp(/\d+/, "g").exec(state.styles.bottom)[0]) || "",
-    imagePositionBottomUnit: state => state.styles.bottom.split(RegExp(/\d+/, "g"))[1] || "px"
+    imagePositionBottomUnit: state => state.styles.bottom.split(RegExp(/\d+/, "g"))[1] || "px",
+
+    imageRotation: state => state.styles.transform && RegExp(/\d+/, "").exec(state.styles.transform)[0]
   },
   mutations: {
     toggleImageSettings(state, toggle) {
@@ -53,6 +56,12 @@ export default {
     updateStyles({ state }, style) {
       return new Promise(resolve => {
         state.styles[style.key] = style.value;
+        resolve();
+      });
+    },
+    updateRotation({ state }, degree) {
+      return new Promise(resolve => {
+        state.styles.transform = `rotateZ(${degree}deg)`;
         resolve();
       });
     },
@@ -78,9 +87,6 @@ export default {
           return result;
         }, {});
       commit("updateStyles", styles);
-      //commit("updateStyles", { key: "url", value: url });
-
-      //state.settings;
     }
   }
 };
