@@ -4,7 +4,8 @@ export default {
     modified: false,
     saving: false,
     autoSave: false,
-    autoSaveID: null
+    autoSaveID: null,
+    autoSaveInterval: 5000
   },
   getters: {
     isMarkdownOpen: state => state.path != ""
@@ -47,7 +48,7 @@ export default {
           if (state.modified) {
             dispatch("saveMarkdown");
           }
-        }, 3000);
+        }, state.autoSaveInterval);
       } else {
         clearInterval(state.autoSaveID);
         state.autoSaveID = null;
