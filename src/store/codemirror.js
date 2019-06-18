@@ -37,7 +37,7 @@ export default {
     registerCodeMirror(_, codemirror) {
       window.codemirror = codemirror;
     },
-    updatePreviewPagination(state, pagination) {
+    updatePreviewPagination(_, pagination) {
       let pages = window.codemirror.getSearchCursor(/~page/gm);
       while (pagination--) {
         pages.findNext();

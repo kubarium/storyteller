@@ -1,6 +1,7 @@
 <template>
   <v-menu open-on-hover offset-y :disabled="!$store.getters.isMarkdownOpen">
-    <v-btn slot="activator" flat>Settings
+    <v-btn slot="activator" flat
+      >Settings
       <v-icon>arrow_drop_down</v-icon>
     </v-btn>
 
@@ -10,6 +11,17 @@
           <v-list-tile-title>Wrap Lines</v-list-tile-title>
         </v-list-tile-content>
         <v-list-tile-avatar v-if="$store.state.codemirror.lineWrapping">
+          <v-icon>check_box</v-icon>
+        </v-list-tile-avatar>
+        <v-list-tile-avatar v-else>
+          <v-icon>check_box_outline_blank</v-icon>
+        </v-list-tile-avatar>
+      </v-list-tile>
+      <v-list-tile @click="$store.dispatch('toggleAutoSave')">
+        <v-list-tile-content>
+          <v-list-tile-title>Auto Save</v-list-tile-title>
+        </v-list-tile-content>
+        <v-list-tile-avatar v-if="$store.state.markdown.autoSave">
           <v-icon>check_box</v-icon>
         </v-list-tile-avatar>
         <v-list-tile-avatar v-else>
