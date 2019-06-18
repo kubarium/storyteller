@@ -34,7 +34,7 @@ export default {
       state.lineWrapping = !state.lineWrapping;
       window.codemirror.setOption("lineWrapping", state.lineWrapping);
     },
-    registerCodeMirror(state, codemirror) {
+    registerCodeMirror(_, codemirror) {
       window.codemirror = codemirror;
     },
     updatePreviewPagination(state, pagination) {
@@ -49,10 +49,10 @@ export default {
     }
   },
   actions: {
-    addImage({}, path) {
+    addImage(_, path) {
       window.codemirror.getDoc().replaceRange(`${operations["addImage"](path)}`, window.codemirror.getCursor());
     },
-    applyOperation({ commit }, operation) {
+    applyOperation(_, operation) {
       if (operation === "addImage") {
         window.ml.show();
       } else {
