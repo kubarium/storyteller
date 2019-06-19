@@ -1,9 +1,9 @@
 @import "../background-image.scss";
 @import "../layout.scss";
-@import "../fonts/BookSanity/index";
-@import "../fonts/MrJeeves/index";
+@import "../fonts/Bitter/index";
+@import "../fonts/Almendra/index";
 @import "../fonts/ScalySans/index";
-@import "../fonts/Solberry/index";
+@import "../fonts/Cheshire/index";
 @import "../printer-settings.scss";
 @import "../utils";
 
@@ -32,7 +32,7 @@
 
   background-color: #eee5ce;
   background-position: center;
-  font-family: BookSanity;
+  font-family: Bitter;
   font-size: 0.317cm;
   text-rendering: optimizeLegibility;
   page-break-before: always;
@@ -53,7 +53,7 @@
   & h1 + p::first-letter {
     font-size: 10em;
     float: left;
-    font-family: Solberry;
+    font-family: CheshireInitials;
     color: #222;
     line-height: 1em;
     margin-right: 0.1em;
