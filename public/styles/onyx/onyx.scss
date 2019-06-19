@@ -3,7 +3,8 @@
 @import "../fonts/Bitter/index";
 @import "../fonts/Almendra/index";
 @import "../fonts/ScalySans/index";
-@import "../fonts/Cheshire/index";
+@import "../fonts/GoudyInitialen/index";
+@import "../fonts/RothenburgDecorative/index";
 @import "../printer-settings.scss";
 @import "../utils";
 
@@ -53,7 +54,7 @@
   & h1 + p::first-letter {
     font-size: 10em;
     float: left;
-    font-family: CheshireInitials;
+    font-family: "Goudy Initialen";
     color: #222;
     line-height: 1em;
     margin-right: 0.1em;
@@ -214,10 +215,13 @@
   & .pageNumber {
     position: absolute;
     right: 2px;
-    bottom: 22px;
+    bottom: 2px;
     width: 50px;
-    font-size: 0.9em;
-    color: #c9ad6a;
+    font-family: "Rothenburg Decorative";
+    font-size: 1.9em;
+    /* color: #c9ad6a; */
+    color: black;
+    z-index:10;
     text-align: center;
   }
 
@@ -235,7 +239,8 @@
     left: 0;
     height: 50px;
     width: 100%;
-    background-image: pathify("assets/footer.png");
+    mix-blend-mode: multiply;
+    background-image: pathify("assets/onyx/footer.png");
     background-size: cover;
   }
 }
