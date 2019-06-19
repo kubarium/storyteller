@@ -2,17 +2,14 @@
   <v-container class="app-content" fluid grid-list-md>
     <v-layout column>
       <v-layout row wrap>
-        <!-- <v-flex md12></v-flex> -->
-        <v-flex xs12 sm12 md5 lg5 xl6 fill-height>
+        <v-flex xs12 sm12 md5 lg5 xl7>
           <markdown-operations />
           <markdown />
         </v-flex>
-        <v-flex xs12 sm12 md7 lg7 xl6 fill-height>
+        <v-flex xs12 sm12 md7 lg7 xl5>
           <preview-operations />
           <preview />
         </v-flex>
-        <!-- </v-layout>
-        </v-container>-->
       </v-layout>
     </v-layout>
   </v-container>

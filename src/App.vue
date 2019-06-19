@@ -109,7 +109,7 @@ export default {
   padding: initial;
 }
 .renderer {
-  height: 82vh;
+  height: 85vh;
   overflow-y: hidden;
   @include box-shadow();
 }
