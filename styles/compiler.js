@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 //console.clear();
+if (!argv.file) return console.log(`Run it like node compiler.js --file=5E/5E`);
 const file = path.resolve(argv.file);
 const folder = RegExp(/\/.*\//).exec(file)[0];
 const css = `${file}.css`;
