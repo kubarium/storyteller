@@ -102,3 +102,22 @@ export const addCompactTables = `
 export const addImage = path => `
 <img src="${path}" style="position:absolute; width: 50%; top: 50%; left: 50%; mix-blend-mode:normal"/>
 `;
+
+export const addFootnote = `<div class="footnote">Footnote</div>`;
+
+export const addNote = `
+> ##### Note Header
+> Use this note to point out some interesting information. 
+> 
+> Other markdown **features** should work here.
+`;
+
+export const addDescription = `
+<div class='descriptive'>
+
+##### Description Header
+Use this description to point out some interesting information. 
+
+Other markdown **features** should work here.
+</div>
+`;

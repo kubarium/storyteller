@@ -16,6 +16,7 @@ export default {
             "Class Features",
             "Image",
             "Note",
+            "Footnote",
             "Description",
             "Monster Stats",
             "Wide Monster Stats"
