@@ -12,7 +12,7 @@
   margin: 0;
 }
 
-@include background-image("5E", "5E");
+@include background-image("onyx", "onyx");
 
 .pages .page {
   @media screen {
@@ -147,7 +147,8 @@
 
     tbody {
       tr:nth-child(odd) {
-        background-color: #e0e5c1;
+        background-color: #AFC8DF
+        /*  #E97B44; */
       }
 
       tr td {
@@ -197,7 +198,6 @@
   }
 
   & .footnote {
-    content: "aaa";
     position: absolute;
     right: 80px;
     bottom: 32px;
@@ -209,18 +209,17 @@
   }
 
   &:nth-child(even) .pageNumber{
-    left: 2px;
+    left: 50px;
   }
 
   & .pageNumber {
     position: absolute;
-    right: 2px;
-    bottom: 2px;
+    right: 50px;
+    bottom: 8px;
     width: 50px;
     font-family: "Rothenburg Decorative";
-    font-size: 1.9em;
-    /* color: #c9ad6a; */
-    color: black;
+    font-size: 1.8em;
+    color: #f9dd9a;    
     z-index:10;
     text-align: center;
   }
@@ -232,15 +231,20 @@
   &:nth-child(even)::after {
     transform: scaleX(-1);
   }
+  &:nth-child(even):after {
+    left:0;
+  }
   &:after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 50px;
-    width: 100%;
+    bottom: -140px;
+    right: 0;
+    height: 20%;
+    width: 20%;
     mix-blend-mode: multiply;
     background-image: pathify("assets/onyx/footer.png");
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 5;
   }
 }
