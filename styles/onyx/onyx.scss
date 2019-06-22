@@ -1,9 +1,10 @@
 @import "../background-image.scss";
 @import "../layout.scss";
-@import "../fonts/BookSanity/index";
-@import "../fonts/MrJeeves/index";
+@import "../fonts/Bitter/index";
+@import "../fonts/Almendra/index";
 @import "../fonts/ScalySans/index";
-@import "../fonts/Solberry/index";
+@import "../fonts/GoudyInitialen/index";
+@import "../fonts/QumpellkaNo12/index";
 @import "../printer-settings.scss";
 @import "../utils";
 
@@ -11,7 +12,7 @@
   margin: 0;
 }
 
-@include background-image("5E", "5E");
+@include background-image("onyx", "onyx");
 
 .pages .page {
   @media screen {
@@ -32,7 +33,7 @@
 
   background-color: #eee5ce;
   background-position: center;
-  font-family: BookSanity;
+  font-family: Bitter;
   font-size: 0.317cm;
   text-rendering: optimizeLegibility;
   page-break-before: always;
@@ -53,7 +54,7 @@
   & h1 + p::first-letter {
     font-size: 10em;
     float: left;
-    font-family: Solberry;
+    font-family: "Goudy Initialen";
     color: #222;
     line-height: 1em;
     margin-right: 0.1em;
@@ -146,7 +147,7 @@
 
     tbody {
       tr:nth-child(odd) {
-        background-color: #e0e5c1;
+        background-color: rgba(175,200,123,0.51)
       }
 
       tr td {
@@ -196,7 +197,6 @@
   }
 
   & .footnote {
-    content: "aaa";
     position: absolute;
     right: 80px;
     bottom: 32px;
@@ -208,17 +208,21 @@
   }
 
   &:nth-child(even) .pageNumber{
-    left: 2px;
+    left: 50px;
   }
 
   & .pageNumber {
     position: absolute;
-    right: 2px;
-    bottom: 22px;
+    right: 50px;
+    bottom: 6px;
     width: 50px;
-    font-size: 0.9em;
-    color: #c9ad6a;
+    font-family: QumpellkaNo12;
+    font-weight: bold;
+    font-size: 1.8em;
+    color: #f9fd0a;    
+    z-index:10;
     text-align: center;
+    letter-spacing: .2em;
   }
 
   & .pageNumber.auto::after {
@@ -228,14 +232,20 @@
   &:nth-child(even)::after {
     transform: scaleX(-1);
   }
+  &:nth-child(even):after {
+    left:0;
+  }
   &:after {
     content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 50px;
-    width: 100%;
-    background-image: pathify("assets/footer.png");
-    background-size: cover;
+    bottom: -145px;
+    right: 0;
+    height: 20%;
+    width: 20%;
+    mix-blend-mode: multiply;
+    background-image: pathify("assets/onyx/footer.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 5;
   }
 }
