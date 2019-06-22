@@ -145,16 +145,16 @@
   margin: 0; }
 
 .pages.letter-portrait .page {
-  background-image: url(/assets/onyx/onyx-letter-portrait.jpg); }
+  background-image: url(/storyteller/assets/onyx/onyx-letter-portrait.jpg); }
 
 .pages.letter-landscape .page {
-  background-image: url(/assets/onyx/onyx-letter-landscape.jpg); }
+  background-image: url(/storyteller/assets/onyx/onyx-letter-landscape.jpg); }
 
 .pages.a4-portrait .page {
-  background-image: url(/assets/onyx/onyx-a4-portrait.jpg); }
+  background-image: url(/storyteller/assets/onyx/onyx-a4-portrait.jpg); }
 
 .pages.a4-landscape .page {
-  background-image: url(/assets/onyx/onyx-a4-landscape.jpg); }
+  background-image: url(/storyteller/assets/onyx/onyx-a4-landscape.jpg); }
 
 .pages .page {
   column-count: 2;
@@ -265,7 +265,7 @@
     font-family: ScalySans;
     border-style: solid;
     border-width: 7px;
-    border-image: url(/assets/description.png) 12 stretch;
+    border-image: url(/storyteller/assets/description.png) 12 stretch;
     border-image-outset: 4px;
     box-shadow: 0 0 6px #faf7ea; }
     .pages .page .descriptive p {
@@ -296,7 +296,7 @@
     border-image-outset: 25px 17px;
     border-image-repeat: stretch;
     border-image-slice: 150 200 150 200;
-    border-image-source: url(/assets/table.png);
+    border-image-source: url(/storyteller/assets/table.png);
     border-image-width: 47px; }
   .pages .page p + p {
     text-indent: 1em;
@@ -309,7 +309,7 @@
     background-color: #e0e5c1;
     border-style: solid;
     border-width: 11px;
-    border-image: url(/assets/blockquote.png) 11;
+    border-image: url(/storyteller/assets/blockquote.png) 11;
     border-image-outset: 9px 0;
     box-shadow: 1px 4px 14px #888; }
   .pages .page .wide {
@@ -354,7 +354,7 @@
     height: 20%;
     width: 20%;
     mix-blend-mode: multiply;
-    background-image: url(/assets/onyx/footer.png);
+    background-image: url(/storyteller/assets/onyx/footer.png);
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 5; }
