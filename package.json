@@ -6,12 +6,15 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "stylize": "cd public/styles/ && cross-var node compiler.js --env=p --file=$STORYTELLER && yarn deploy",
     "deploy": "vue-cli-service build && gh-pages -d dist"
   },
   "homepage": "https://kubarium.github.io/storyteller/",
   "dependencies": {
     "axios": "^0.18.0",
     "cloudinary-core": "^2.6.3",
+    "concurrently": "^4.1.0",
+    "cross-var": "^1.1.0",
     "dropbox": "^4.0.15",
     "gh-pages": "^2.0.1",
     "markdown-it": "^8.4.2",
