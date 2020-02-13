@@ -56,6 +56,7 @@ export default {
     },
     saveMarkdown({ state, rootState }) {
       if (state.path == "") return;
+      if (state.modified == false) return;
 
       state.saving = true;
       state.modified = false;
