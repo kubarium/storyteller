@@ -1,5 +1,0 @@
-@import "variables";
-
-@function pathify($path) {
-  @return url(#{$root}#{$path});
-}

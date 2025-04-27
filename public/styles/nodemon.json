@@ -1,5 +1,0 @@
-{
-  "watch": ["./"],
-  "ext": "scss",
-  "directive": "nodemon compiler.js --env=production --file=5E/5E"
-}
