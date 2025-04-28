@@ -5,5 +5,6 @@
   <div class="flex flex-col h-screen">
     <MissionControl />
     <RouterView />
+    <Copyright />
   </div>
 </template>
