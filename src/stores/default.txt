@@ -1,0 +1,24 @@
+# 🪐 Discovery of Amino Acids in Asteroid Ryugu Samples
+
+## 🚀 Mission Overview
+- **Hayabusa2**, launched by the Japan Aerospace Exploration Agency (JAXA) in 2014, aimed to collect samples from the **C-type asteroid Ryugu**, located approximately 300 million kilometers from Earth.
+- The spacecraft successfully retrieved about **5.4 grams** of material from Ryugu's surface and subsurface, returning them to Earth in **December 2020**.
+
+## 🧬 Key Findings
+- Analysis of the samples revealed the presence of **over 20 types of amino acids**, including **glycine** and **L-alanine**, which are fundamental components of proteins.
+- This marks the **first confirmed detection** of amino acids directly obtained from an asteroid in space, minimizing concerns about terrestrial contamination.
+
+## 🌌 Significance
+- The discovery supports the hypothesis that **organic compounds necessary for life** may have been delivered to Earth via asteroids, contributing to the **origins of life** on our planet.
+- Ryugu's classification as a **carbon-rich (C-type) asteroid** suggests it contains **primitive materials** from the early solar system, offering insights into the distribution of organic matter in space.
+
+## 🔍 Additional Observations
+- The amino acids found exhibited a nearly equal mix of **left-handed and right-handed enantiomers**, unlike the predominance of left-handed amino acids in terrestrial life. This symmetry implies an extraterrestrial origin for these molecules.
+- The presence of **non-proteinogenic amino acids**, such as isovaline and norvaline, further indicates that these compounds formed in space and were not the result of Earth-based contamination.
+
+## 🔬 Future Research
+- Ongoing studies aim to compare Ryugu's samples with those from other missions, like NASA's **OSIRIS-REx**, to deepen our understanding of the role asteroids may play in delivering life's building blocks across the solar system.
+
+---
+
+This discovery underscores the importance of sample-return missions in astrobiology and the study of the early solar system.
