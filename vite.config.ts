@@ -31,7 +31,7 @@ export default defineConfig({
     }),
     Components({
       dts: true,
-      dirs: ['src'],
+      dirs: ['src', 'src/components'],
       resolvers: [PrimeVueResolver()],
     }),
   ],
