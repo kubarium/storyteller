@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     App: typeof import('./src/App.vue')['default']
     Button: typeof import('primevue/button')['default']
+    Copyright: typeof import('./src/components/Copyright.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
@@ -19,6 +20,7 @@ declare module 'vue' {
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     InputIcon: typeof import('primevue/inputicon')['default']
     InputText: typeof import('primevue/inputtext')['default']
+    MarkdownEditor: typeof import('./src/components/MarkdownEditor.vue')['default']
     Menubar: typeof import('primevue/menubar')['default']
     MissionControl: typeof import('./src/components/MissionControl.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
