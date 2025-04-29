@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { useEditorStore } from '@/stores/editor';
+import { usePreviewStore } from '@/stores/preview';
 
-const editorStore = useEditorStore()
-
+const previewStore = usePreviewStore()
+//https://github.com/awesome-css-group/awesome-css?tab=readme-ov-file
+//https://github.com/dbohdan/classless-css?tab=readme-ov-file#classless-css
+//https://dohliam.github.io/dropin-minimal-css/
 onMounted(() => {
   console.log('Preview mounted');
 })
@@ -13,7 +15,11 @@ onMounted(() => {
       <template #start>
         <span class="text-yellow-950 text-lg font-bold">Preview</span>
       </template>
+      <template #end>
+        <CSSThemes />
+      </template>
     </Menubar>
-    <iframe class="h-full w-full" :srcdoc="editorStore.render" />
+    <!-- <div class="pages h-full w-full" v-html="previewStore.render"></div> -->
+    <iframe class="h-full w-full" :srcdoc="previewStore.srcdoc" />
   </div>
 </template>
