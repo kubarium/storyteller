@@ -1,16 +1,6 @@
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
 
-const items = ref([
-  {
-    label: 'Update',
-    icon: 'pi pi-refresh'
-  },
-  {
-    label: 'Delete',
-    icon: 'pi pi-times'
-  }
-])
+
 </script>
 <template>
   <Toolbar class="m-2">
@@ -33,7 +23,7 @@ const items = ref([
       <!-- <Button icon="pi pi-plus" class="mr-2" severity="secondary" text />
         <Button icon="pi pi-print" class="mr-2" severity="secondary" text />
         <Button icon="pi pi-upload" severity="secondary" text />
-        <SplitButton label="Save" :model="items"></SplitButton> -->
+         -->
     </template>
   </Toolbar>
 </template>
