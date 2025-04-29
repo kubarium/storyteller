@@ -1,14 +1,8 @@
-import { defineStore } from 'pinia'
-import content from './default.txt'
-import markdownit from 'markdown-it'
+import { defineStore, acceptHMRUpdate } from 'pinia'
+import content from '@/data/default.txt'
 
-const md = markdownit()
 export const useEditorStore = defineStore('editor', () => {
   const code = ref('')
-  const render = computed(() => {
-    // renderMarkdown(code.value)
-    return md.render(code.value)
-  })
 
   fetch(content)
     .then((response) => response.text())
@@ -16,5 +10,8 @@ export const useEditorStore = defineStore('editor', () => {
 
   console.log(code.value)
 
-  return { code, render }
+  return { code }
 })
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useEditorStore, import.meta.hot))
+}
