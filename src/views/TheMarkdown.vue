@@ -8,6 +8,9 @@
       <template #start>
         <span class="text-yellow-950 text-lg font-bold">Markdown</span>
       </template>
+      <template #end>
+        <MarkdownSettings :disabled="true" />
+      </template>
     </Menubar>
     <MarkdownEditor  />
   </div>
