@@ -1,0 +1,46 @@
+[
+  {
+    "label": "UIKit",
+    "value": [
+      "https://cdn.jsdelivr.net/npm/uikit@3.23.6/dist/css/uikit.min.css"
+    ]
+  },
+  {
+    "label": "new.css",
+    "value": [
+      "https://fonts.xz.style/serve/inter.css",
+      "https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css",
+      "https://newcss.net/theme/terminal.css"
+    ]
+  },
+  {
+    "label": "Simple.css",
+    "value": [
+      "https://cdn.simplecss.org/simple.min.css"
+    ]
+  },
+  {
+    "label": "Bulma",
+    "value": [
+      "https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
+    ]
+  },
+  {
+    "label": "Pico",
+    "value": [
+      "https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    ]
+  },
+  {
+    "label": "Water.css",
+    "value": [
+      "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    ]
+  },
+  {
+    "label": "Bonsai",
+    "value": [
+      "https://unpkg.com/bonsai.css@latest/dist/bonsai.min.css"
+    ]
+  }
+]
