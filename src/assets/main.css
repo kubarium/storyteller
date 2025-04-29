@@ -1,4 +1,8 @@
 /* @import './base.css'; */
 @import "tailwindcss";
+@tailwind components;
+@tailwind utilities;
 
-
+a {
+  @apply cursor-pointer;
+}
