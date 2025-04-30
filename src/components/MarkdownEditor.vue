@@ -33,6 +33,16 @@ onMounted(() => {
 })
 </script>
 <template>
-  <Codemirror v-model="editorStore.code" placeholder="Code goes here..." :extensions="extensions" :autofocus="true"
-    :indent-with-tab="true" :tab-size="2" @ready="handleReady" style="height: 100%;" />
+  <ScrollPanel class="h-full w-full p-0 overflow-auto">
+    <Codemirror v-model="editorStore.code" placeholder="Code goes here..." :extensions="extensions" :autofocus="true"
+      :indent-with-tab="true" :tab-size="2" @ready="handleReady" style="height: 100%;" />
+  </ScrollPanel>
 </template>
+
+<style>
+.p-scrollpanel {
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: #e2e8f0;
+}
+</style>

@@ -13,13 +13,17 @@ onMounted(() => {
   <div class="flex flex-1/2 flex-col gap-2">
     <Menubar>
       <template #start>
-        <span class="text-yellow-950 text-lg font-bold">Preview</span>
+        <span class="text-green-950 text-lg font-bold">Preview</span>
       </template>
       <template #end>
         <CSSThemes />
       </template>
     </Menubar>
-    <!-- <div class="pages h-full w-full" v-html="previewStore.render"></div> -->
-    <iframe class="h-full w-full" :srcdoc="previewStore.srcdoc" />
+    <!-- <div class="pages h-full w-full">
+      <Render />
+    </div> -->
+    <ScrollPanel class="h-full w-full overflow-hidden p-3">
+      <iframe class="w-full h-full" :srcdoc="previewStore.srcdoc" />
+    </ScrollPanel>
   </div>
 </template>
