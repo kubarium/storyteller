@@ -1,5 +1,11 @@
 [
   {
+    "label": "Bonsai",
+    "value": [
+      "https://unpkg.com/bonsai.css@latest/dist/bonsai.min.css"
+    ]
+  },
+  {
     "label": "UIKit",
     "value": [
       "https://cdn.jsdelivr.net/npm/uikit@3.23.6/dist/css/uikit.min.css"
@@ -35,12 +41,6 @@
     "label": "Water.css",
     "value": [
       "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
-    ]
-  },
-  {
-    "label": "Bonsai",
-    "value": [
-      "https://unpkg.com/bonsai.css@latest/dist/bonsai.min.css"
     ]
   }
 ]
