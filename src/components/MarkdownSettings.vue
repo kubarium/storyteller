@@ -10,7 +10,7 @@ const change_theme = (theme: object) => {
 }
 </script>
 <template>
-  <SplitButton label="Settings" :model="preview.CSS_THEMES" size="small">
+  <SplitButton label="Settings" icon="pi pi-cog" :model="preview.CSS_THEMES" size="small">
     <template #item="{ item }">
       <a @click="change_theme(item)" class="p-2 items-center inline-flex w-full h-9">{{ item.label }}</a>
     </template>
