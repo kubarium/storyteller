@@ -10,6 +10,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     App: typeof import('./src/App.vue')['default']
     Button: typeof import('primevue/button')['default']
+    Card: typeof import('primevue/card')['default']
     Copyright: typeof import('./src/components/Copyright.vue')['default']
     CSSThemes: typeof import('./src/components/CSSThemes.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
@@ -25,6 +26,8 @@ declare module 'vue' {
     MarkdownSettings: typeof import('./src/components/MarkdownSettings.vue')['default']
     Menubar: typeof import('primevue/menubar')['default']
     MissionControl: typeof import('./src/components/MissionControl.vue')['default']
+    Panel: typeof import('primevue/panel')['default']
+    Render: typeof import('./src/components/Render.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ScrollPanel: typeof import('primevue/scrollpanel')['default']
